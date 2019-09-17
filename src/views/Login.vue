@@ -3,37 +3,38 @@
     <div class="logo">LOGO</div>
     <form>
       <div class="form-item">
-        <label for="username">Username:</label>
+        <!--<label for="username">Username:</label>-->
         <input
           type="text"
           name="username"
           id="username"
-          placeholder="请输入用户名"
+          placeholder="Username"
           v-model="model.username"
           @focus="focus"
         />
       </div>
 
       <div class="form-item">
-        <label for="password">Password:</label>
+        <!--<label for="password">Password:</label>-->
         <input
           type="text"
           name="password"
           id="password"
-          placeholder="请输入密码"
+          placeholder="password"
           v-model="model.password"
           @focus="focus"
         />
       </div>
-      <div v-show="showError">
+      <div class="tiaoyue">
+        <input type="checkbox" name="agreement" id="agreement" v-model="agreement"/>
+        <!-- <div class="quare-gx">&#9745;&#65039;</div> -->
+        <span class="text-zs">I agree with Terms and conition</span>
+      </div>
+      <div v-show="showError" class="yincanxinxi">
         <span>{{errorMassage}}</span>
       </div>
       <div class="form-footer">
-        <input
-          type="button"
-          @click="submit"
-          value="提交信息"
-        />
+        <input type="button" @click="submit" value="Sign Up" />
       </div>
     </form>
   </div>
@@ -50,7 +51,8 @@ export default {
         password: "111"
       },
       errorMassage: "",
-      showError: false
+      showError: false,
+      agreement:false
     };
   },
   methods: {
@@ -75,6 +77,10 @@ export default {
 
     isValid() {
       this.showError = true;
+      if(!this.agreement){
+          this.errorMassage = "请同意我们的规则"
+          return false;
+      }
       if (!this.model.username) {
         this.errorMassage = "请输入用户名";
         return false;
@@ -93,6 +99,7 @@ export default {
 
         return false;
       }
+    
       this.showError = false;
       return true;
     },
@@ -106,57 +113,117 @@ export default {
 
 <style scoped>
 #login {
-  background-color: aqua;
+  background: linear-gradient(rgb(250, 146, 177), rgb(250, 166, 117));
   position: absolute;
   height: 100%;
   width: 100%;
 }
 .logo {
   background-color: white;
-  width: 140px;
-  height: 140px;
-  margin: 160px auto 250px auto;
+  width: 150px;
+  height: 150px;
+  margin: 150px auto 190px auto;
   text-align: center;
-  line-height: 140px;
-  border-radius: 70px;
+  line-height: 150px;
+  border-radius: 75px;
 }
 .form-item {
-  margin: 0 auto 20px auto;
+  margin: 0 auto 30px auto;
   text-align: center;
 }
 
-.form-item label {
+/*.form-item label {
   display: inline-block;
   width: 30%;
   text-align: right;
   margin-right: 10px;
   letter-spacing: 2px;
   color: gray;
-}
+}*/
 .form-item input {
   display: inline-block;
-  width: 40%;
-  height: 35px;
-  border-radius: 10px;
+  width: 80%;
+  height: 50px;
+  border-radius: 20px;
   border: 0px solid #d6d6d5;
-  padding-left: 10px;
-  letter-spacing: 2px;
+  padding-left: 20px;
+  letter-spacing: 1px;
   line-height: 35px;
+  font-size: 16px;
+  font-family: "微软雅黑";
+  background-color: rgb(255, 255, 255, 0.4);
+  /*opacity:0.6; 图片透明*/
+}
+.form-item input:-ms-input-placeholder {
+  color: white;
+}
+.form-item input:-moz-placeholder {
+  color: white;
+}
+.form-item input::-webkit-input-placeholder {
+  color: white;
+}
+.tiaoyue {
+  display: flex;
+  margin-top: -20px;
+}
+#agreement {
+  margin-left: 10%;
+  margin-right: 25px;
+  width: 0px;
+  height: 0px;
+  position: relative;
+  /* opacity:0.6;  */
+}
+#agreement::after {
+  content: " ";
+  top: 0px;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  /* background-color: whitesmoke;  */
+  border:1px solid white;
+  border-radius: 3px;
+  position: absolute;
+}
+#agreement:checked:after {
+    background-color: whitesmoke;
+    content: "✓";
+    color:black;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+}
+.text-zs {
+  display: block;
+  color: white;
+  font-family: "微软雅黑";
+  font-size: 10px;
+  margin-bottom: 30px;
 }
 .form-footer {
   text-align: center;
-  margin: 35px auto 0 auto;
+  margin: 0px auto 0 auto;
+}
+.yincanxinxi {
+  color: red;
+  font-family: "微软雅黑";
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
 }
 .form-footer input {
   display: inline-block;
   width: 60%;
-  height: 35px;
-  background-color: rgb(250, 250, 26);
-  border: 2px solid white;
-  border-radius: 10px;
-  letter-spacing: 2px;
-  font-size: 15px;
-  line-height: 31px;
-  color: gray;
+  height: 50px;
+  /*background-color: rgb(250, 250, 26);*/
+  border: 1px solid white;
+  border-radius: 20px;
+  /*letter-spacing: 2px;*/
+  font-size: 18px;
+  line-height: 46px;
+  color: white;
+  font-family: "微软雅黑";
+  background-color: transparent;
 }
 </style>
