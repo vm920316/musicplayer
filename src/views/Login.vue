@@ -29,36 +29,48 @@
         <span>{{errorMassage}}</span>
       </div>
       <div class="form-footer">
-        <input type="button" @click="submit" value="提交信息" />
+        <input
+          type="button"
+          @click="submit"
+          value="提交信息"
+        />
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "login",
   data() {
     return {
       model: {
-        username: "",
-        password: ""
+        username: "111",
+        password: "111"
       },
       errorMassage: "",
       showError: false
     };
   },
-
   methods: {
     submit() {
       let isValid = this.isValid();
       if (isValid === false) {
         return;
       }
-      alert(
-        `username: ${this.model.username}, password: ${this.model.password}`
-      );
       // to submit username or password
+      axios.post("/api/login", {
+        username: this.model.username,
+        password: this.model.password
+      }).then(response => {
+        if (response.status === 200) {
+          localStorage.setItem("token", response.data.token)
+          this.$router.push({
+            name: 'home'
+          })
+        }
+      })
     },
 
     isValid() {
@@ -145,6 +157,6 @@ export default {
   letter-spacing: 2px;
   font-size: 15px;
   line-height: 31px;
-  color:gray;
+  color: gray;
 }
 </style>
