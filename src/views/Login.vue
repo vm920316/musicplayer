@@ -17,7 +17,7 @@
       <div class="form-item">
         <!--<label for="password">Password:</label>-->
         <input
-          type="text"
+          type="password"
           name="password"
           id="password"
           placeholder="password"
@@ -47,8 +47,8 @@ export default {
   data() {
     return {
       model: {
-        username: "111",
-        password: "111"
+        username: "",
+        password: ""
       },
       errorMassage: "",
       showError: false,
