@@ -28,7 +28,7 @@
       <div class="tiaoyue">
         <input type="checkbox" name="agreement" id="agreement" v-model="agreement"/>
         <!-- <div class="quare-gx">&#9745;&#65039;</div> -->
-        <span class="text-zs">I agree with Terms and conition</span>
+        <label class="text-zs" for="agreement">I agree with Terms and conition</label>
       </div>
       <div v-show="showError" class="yincanxinxi">
         <span>{{errorMassage}}</span>
