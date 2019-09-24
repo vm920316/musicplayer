@@ -11,10 +11,7 @@ let router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-      meta: {
-        auth: true
-      }
+      component: Home
     },
     {
       path: '/about',
@@ -22,10 +19,7 @@ let router = new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-      meta: {
-        auth: true
-      }
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
       path: '/login',
@@ -42,14 +36,13 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta && to.meta.auth && !Vue.ls.get('token')) {
+  if ((to.meta.hasOwnProperty('auth') && !to.meta.auth) || Vue.ls.get('token')) {
+    next()
+  } else {
     next({
       name: 'login'
     })
-    return
   }
-
-  next()
 })
 
 export default router
