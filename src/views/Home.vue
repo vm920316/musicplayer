@@ -11,7 +11,7 @@ export default {
   name: 'home',
   methods: {
     logout() {
-      localStorage.removeItem('token')
+      this.$ls.remove('token')
       this.$router.push({
         name: 'login'
       })

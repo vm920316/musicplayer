@@ -42,7 +42,7 @@ let router =  new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta && to.meta.auth && !localStorage.getItem('token')) {
+  if (to.meta && to.meta.auth && !Vue.ls.get('token')) {
     next({
       name: 'login'
     })

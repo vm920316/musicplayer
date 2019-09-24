@@ -67,7 +67,7 @@ export default {
         password: this.model.password
       }).then(response => {
         if (response.status === 200) {
-          localStorage.setItem("token", response.data.token)
+          this.$ls.set("token", response.data.token)
           this.$router.push({
             name: 'home'
           })
