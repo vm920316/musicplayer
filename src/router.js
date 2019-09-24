@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-let router =  new Router({
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
