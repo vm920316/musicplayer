@@ -1,73 +1,73 @@
 <template>
-  <div id="login">
-    <div class="logo">LOGO</div>
+  <div id='login'>
+    <div class='logo'>LOGO</div>
     <form>
-      <div class="form-item">
-        <!--<label for="username">Username:</label>-->
+      <div class='form-item'>
+        <!--<label for='username'>Username:</label>-->
         <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Username"
-          v-model="model.username"
-          @focus="focus"
+          type='text'
+          name='username'
+          id='username'
+          placeholder='Username'
+          v-model='model.username'
+          @focus='focus'
         />
       </div>
 
-      <div class="form-item">
-        <!--<label for="password">Password:</label>-->
+      <div class='form-item'>
+        <!--<label for='password'>Password:</label>-->
         <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="password"
-          v-model="model.password"
-          @focus="focus"
+          type='password'
+          name='password'
+          id='password'
+          placeholder='password'
+          v-model='model.password'
+          @focus='focus'
         />
       </div>
-      <div class="tiaoyue">
-        <input type="checkbox" name="agreement" id="agreement" v-model="agreement"/>
-        <!-- <div class="quare-gx">&#9745;&#65039;</div> -->
-        <label class="text-zs" for="agreement">I agree with Terms and conition</label>
+      <div class='tiaoyue'>
+        <input type='checkbox' name='agreement' id='agreement' v-model='agreement'/>
+        <!-- <div class='quare-gx'>&#9745;&#65039;</div> -->
+        <label class='text-zs' for='agreement'>I agree with Terms and conition</label>
       </div>
-      <div v-show="showError" class="yincanxinxi">
+      <div v-show='showError' class='yincanxinxi'>
         <span>{{errorMassage}}</span>
       </div>
-      <div class="form-footer">
-        <input type="button" @click="submit" value="Sign Up" />
+      <div class='form-footer'>
+        <input type='button' @click='submit' value='Sign Up' />
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { TOKEN_KEY } from '@/utils/contants'
 export default {
-  name: "login",
-  data() {
+  name: 'login',
+  data () {
     return {
       model: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       },
-      errorMassage: "",
+      errorMassage: '',
       showError: false,
-      agreement:false
-    };
+      agreement: false
+    }
   },
   methods: {
-    submit() {
-      let isValid = this.isValid();
+    submit () {
+      let isValid = this.isValid()
       if (isValid === false) {
-        return;
+        return
       }
       // to submit username or password
-      axios.post("/api/login", {
+      this.$http.post('/api/login', {
         username: this.model.username,
         password: this.model.password
       }).then(response => {
         if (response.status === 200) {
-          this.$ls.set("token", response.data.token)
+          this.$ls.set(TOKEN_KEY, response.data.token)
           this.$router.push({
             name: 'home'
           })
@@ -75,40 +75,40 @@ export default {
       })
     },
 
-    isValid() {
-      this.showError = true;
-      if(!this.agreement){
-          this.errorMassage = "请同意我们的规则"
-          return false;
+    isValid () {
+      this.showError = true
+      if (!this.agreement) {
+        this.errorMassage = '请同意我们的规则'
+        return false
       }
       if (!this.model.username) {
-        this.errorMassage = "请输入用户名";
-        return false;
+        this.errorMassage = '请输入用户名'
+        return false
       }
       if (!this.model.username.match(/^\d{4,6}@\w{2,3}\.\w{2,4}$/)) {
-        this.errorMassage = "请输入正确的邮箱";
-        return false;
+        this.errorMassage = '请输入正确的邮箱'
+        return false
       }
       if (!this.model.password) {
-        this.errorMassage = "请输入密码";
+        this.errorMassage = '请输入密码'
 
-        return false;
+        return false
       }
       if (this.model.password.length < 6) {
-        this.errorMassage = "密码至少要6位字符";
+        this.errorMassage = '密码至少要6位字符'
 
-        return false;
+        return false
       }
-    
-      this.showError = false;
-      return true;
+
+      this.showError = false
+      return true
     },
 
-    focus() {
-      this.showError = false;
+    focus () {
+      this.showError = false
     }
   }
-};
+}
 </script>
 
 <style scoped>

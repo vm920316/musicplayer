@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-
+import { TOKEN_KEY } from '@/utils/contants'
 Vue.use(Router)
 
 let router = new Router({
@@ -36,7 +36,7 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if ((to.meta.hasOwnProperty('auth') && !to.meta.auth) || Vue.ls.get('token')) {
+  if ((to.meta.hasOwnProperty('auth') && !to.meta.auth) || Vue.ls.get(TOKEN_KEY)) {
     next()
   } else {
     next({

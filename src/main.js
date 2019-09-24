@@ -4,11 +4,17 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 import Storage from './utils/client-storage'
+import Http from './utils/http'
+import { NAMESPACE } from './utils/contants'
 
 Vue.config.productionTip = false
 
 Vue.use(Storage, {
-  namespace: 'musicplayer-'
+  namespace: NAMESPACE
+})
+
+Vue.use(Http, {
+  namespace: NAMESPACE
 })
 
 new Vue({

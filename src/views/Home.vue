@@ -7,11 +7,12 @@
 </template>
 
 <script>
+import { TOKEN_KEY } from '@/utils/contants'
 export default {
   name: 'home',
   methods: {
-    logout() {
-      this.$ls.remove('token')
+    logout () {
+      this.$ls.remove(TOKEN_KEY)
       this.$router.push({
         name: 'login'
       })
