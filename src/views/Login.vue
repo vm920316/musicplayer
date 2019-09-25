@@ -71,6 +71,8 @@ export default {
           this.$router.push({
             name: 'home'
           })
+        } else {
+          this.errorMassage = this.$t('incorrect-username-or-password')
         }
       })
     },

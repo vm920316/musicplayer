@@ -10,5 +10,6 @@
   "require-username": "username is required",
   "require-password": "password is required",
   "incorrect-email": "incorrect email",
-  "password-min-length": "Length of password must be at least 6"
+  "password-min-length": "Length of password must be at least 6",
+  "incorrect-username-or-password": "username or password is incorrect"
 }
