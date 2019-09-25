@@ -6,6 +6,7 @@ import './registerServiceWorker'
 import Storage from './utils/client-storage'
 import Http from './utils/http'
 import { NAMESPACE } from './utils/contants'
+import i18n from './i18n'
 
 Vue.config.productionTip = false
 
@@ -20,5 +21,6 @@ Vue.use(Http, {
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

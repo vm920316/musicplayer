@@ -2,7 +2,7 @@
   <div class="home">
     我的页面
     <br>
-    <input type="button" value="退出登录" @click="logout">
+    <input type="button" :value='$t("logout-button-content")' @click="logout">
   </div>
 </template>
 

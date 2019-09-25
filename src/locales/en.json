@@ -1,0 +1,9 @@
+{
+  "message": "hello i18n !!",
+  "logo-slot": "LOGO",
+  "username-placeholder": "Username",
+  "password-placeholder": "Password",
+  "agreement-content": "I agree with Terms and conition",
+  "login-button-content": "Login",
+  "logout-button-content": "logout"
+}

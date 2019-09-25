@@ -1,6 +1,6 @@
 <template>
   <div id='login'>
-    <div class='logo'>LOGO</div>
+    <div class='logo'>{{ $t('logo-slot') }}</div>
     <form>
       <div class='form-item'>
         <!--<label for='username'>Username:</label>-->
@@ -8,7 +8,7 @@
           type='text'
           name='username'
           id='username'
-          placeholder='Username'
+          :placeholder='$t("username-placeholder")'
           v-model='model.username'
           @focus='focus'
         />
@@ -20,7 +20,7 @@
           type='password'
           name='password'
           id='password'
-          placeholder='password'
+          :placeholder='$t("password-placeholder")'
           v-model='model.password'
           @focus='focus'
         />
@@ -28,13 +28,13 @@
       <div class='tiaoyue'>
         <input type='checkbox' name='agreement' id='agreement' v-model='agreement'/>
         <!-- <div class='quare-gx'>&#9745;&#65039;</div> -->
-        <label class='text-zs' for='agreement'>I agree with Terms and conition</label>
+        <label class='text-zs' for='agreement'>{{ $t("agreement-content") }}</label>
       </div>
       <div v-show='showError' class='yincanxinxi'>
         <span>{{errorMassage}}</span>
       </div>
       <div class='form-footer'>
-        <input type='button' @click='submit' value='Sign Up' />
+        <input type='button' @click='submit' :value='$t("login-button-content")' />
       </div>
     </form>
   </div>
