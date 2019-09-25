@@ -78,24 +78,24 @@ export default {
     isValid () {
       this.showError = true
       if (!this.agreement) {
-        this.errorMassage = '请同意我们的规则'
+        this.errorMassage = this.$t('pick-up-agreement-checkbox')
         return false
       }
       if (!this.model.username) {
-        this.errorMassage = '请输入用户名'
+        this.errorMassage = this.$t('require-username')
         return false
       }
       if (!this.model.username.match(/^\d{4,6}@\w{2,3}\.\w{2,4}$/)) {
-        this.errorMassage = '请输入正确的邮箱'
+        this.errorMassage = this.$t('incorrect-email')
         return false
       }
       if (!this.model.password) {
-        this.errorMassage = '请输入密码'
+        this.errorMassage = this.$t('require-password')
 
         return false
       }
       if (this.model.password.length < 6) {
-        this.errorMassage = '密码至少要6位字符'
+        this.errorMassage = this.$t('password-min-length')
 
         return false
       }

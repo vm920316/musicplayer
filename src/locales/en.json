@@ -5,5 +5,10 @@
   "password-placeholder": "Password",
   "agreement-content": "I agree with Terms and conition",
   "login-button-content": "Login",
-  "logout-button-content": "logout"
+  "logout-button-content": "logout",
+  "pick-up-agreement-checkbox": "Please agree with our rules",
+  "require-username": "username is required",
+  "require-password": "password is required",
+  "incorrect-email": "incorrect email",
+  "password-min-length": "Length of password must be at least 6"
 }
