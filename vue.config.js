@@ -1,15 +1,5 @@
-const mockLoginData = require("./mock/login.json")
-
-module.exports = {
-  devServer: {
-    port: 8081,
-    before(app) {
-      app.post("/api/login", (req, res) => {
-        res.json(mockLoginData)
-      })
-    }
-  },
-
+const devServerConfig = require("./dev-server.config")
+module.exports = Object.assign({
   pluginOptions: {
     i18n: {
       locale: 'en',
@@ -18,4 +8,4 @@ module.exports = {
       enableInSFC: true
     }
   }
-}
+}, devServerConfig)
