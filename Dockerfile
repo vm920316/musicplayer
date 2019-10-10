@@ -1,9 +1,5 @@
-FROM node:10
-COPY ./ /app
-WORKDIR /app
-RUN npm install && npm run build
-
 FROM nginx
 RUN mkdir /app
-COPY --from=0 /app/dist /app
+WORKDIR /app
+COPY ./dist /app
 COPY nginx/default.conf /etc/nginx/nginx.conf
