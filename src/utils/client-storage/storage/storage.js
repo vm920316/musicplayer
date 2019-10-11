@@ -21,7 +21,11 @@ export default class Storage {
   get (name, def = null) {
     const item = this.storage.getItem(this.namespace + name)
     if (item != null) {
-      return JSON.parse(item)
+      try {
+        return JSON.parse(item)
+      } catch (e) {
+        return item
+      }
     }
 
     return def
