@@ -1,45 +1,93 @@
+function isQuotaExceeded(e) {
+  var quotaExceeded = false
+  if (!e) {
+    return quotaExceeded
+  }
+  if (e.code) {
+    switch (e.code) {
+      case 22:
+        quotaExceeded = true
+        break
+      case 1014:
+        // Firefox
+        if (e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
+          quotaExceeded = true
+        }
+        break
+    }
+  } else if (e.number === -2147024882) {
+    // Internet Explorer 8
+    quotaExceeded = true
+  }
+  return quotaExceeded
+}
+
 export default class Storage {
-  constructor (storage, options) {
+  constructor(storage, options) {
     this.storage = storage
     this.options = Object.assign({
-      namespace: ''
+      namespace: '',
+      expire: 1000 * 60 * 60 * 24
     }, options || {})
   }
 
-  get namespace () {
+  get namespace() {
     return this.options.namespace
   }
 
-  get length () {
+  get length() {
     return this.storage.length
   }
 
-  set (name, value) {
-    this.storage.setItem(this.namespace + name, JSON.stringify(value))
+  set(name, value) {
+    let toStore = {
+      created: Date.now(),
+      value
+    }
+
+    const storeFn = () => {
+      this.storage.setItem(this.namespace + name, JSON.stringify(toStore))
+    }
+
+    try {
+      storeFn()
+    } catch (e) {
+      if (isQuotaExceeded(e)) {
+        this.clear()
+        storeFn()
+      } else {
+        throw e
+      }
+    }
   }
 
-  get (name, def = null) {
+  get(name, def = null) {
     const item = this.storage.getItem(this.namespace + name)
     if (item != null) {
       try {
-        return JSON.parse(item)
+        const parsedData = JSON.parse(item)
+        if (!this.options.expire || Date.now() - this.options.expire < parsedData.created) {
+          return parsedData.value
+        }
+
+        this.remove(name)
       } catch (e) {
-        return item
+        console.error(e)
       }
     }
 
     return def
   }
 
-  key (index) {
+  key(index) {
     return this.storage.key(index)
   }
 
-  remove (name) {
+  remove(name) {
     return this.storage.removeItem(this.namespace + name)
   }
 
-  clear () {
+  clear() {
     if (!this.length) {
       return
     }

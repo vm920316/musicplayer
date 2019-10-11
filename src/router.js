@@ -48,7 +48,10 @@ router.beforeEach((to, from, next) => {
     next()
   } else {
     next({
-      name: 'login'
+      name: 'login',
+      query: {
+        redirect: encodeURIComponent(to.fullPath)
+      }
     })
   }
 })

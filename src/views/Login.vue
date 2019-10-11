@@ -68,9 +68,8 @@ export default {
       }).then(response => {
         if (response.status === 200) {
           this.$ls.set(TOKEN_KEY, response.data.token)
-          this.$router.push({
-            name: 'home'
-          })
+          const redirect = decodeURIComponent(this.$route.query.redirect) || '/'
+          this.$router.push(redirect)
         } else {
           this.errorMassage = this.$t('incorrect-username-or-password')
         }
