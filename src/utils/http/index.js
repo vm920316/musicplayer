@@ -4,26 +4,26 @@ import getStorage from '@/utils/client-storage/storage'
 import { TOKEN_KEY } from '@/utils/contants'
 let storage
 
-function getDescriptor (key) {
+function getDescriptor(key) {
   return {
     configurable: false,
     enumerable: false,
-    get () {
+    get() {
       return axios
     },
-    set () {
+    set() {
       console.error(`can not change ${key}`)
     }
   }
 }
 
-function isError (response) {
+function isError(response) {
   return !response || (response.data && response.data.ErrorCode) ||
     (response.data && response.data.Message && response.data.MessageDetail) ||
     (response.data && response.data.Message && Object.getOwnPropertyNames(response.data).length === 1)
 }
 
-function configAxios (options) {
+function configAxios(options) {
   axios.defaults.baseURL = options.baseURL || axios.defaults.baseURL
   const adapter = axios.defaults.adapter
   axios.interceptors.request.use(function (config) {
@@ -77,7 +77,7 @@ function configAxios (options) {
 }
 
 export default {
-  install (Vue, options) {
+  install(Vue, options) {
     options = options || {}
     storage = Vue.ls ? Vue.ls : getStorage(options)
     Object.defineProperty(Vue.prototype, '$http', getDescriptor('Vue.prototype.$http'))

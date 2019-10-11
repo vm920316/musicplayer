@@ -1,7 +1,7 @@
 import Storage from './storage'
 import cookieStorage from './cookieStorage'
 
-function uuidv4 () {
+function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     let r = Math.random() * 16 | 0
     let v = c === 'x' ? r : (r & 0x3 | 0x8)
@@ -9,7 +9,7 @@ function uuidv4 () {
   })
 }
 
-export default function getStorage (options) {
+export default function getStorage(options) {
   let storageObj
   if (typeof window !== 'undefined' && 'localStorage' in window && window.localStorage) {
     try {

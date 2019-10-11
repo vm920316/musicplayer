@@ -1,7 +1,7 @@
 <template>
   <div class="nav-item">
     <div class="item-pho">
-      <img v-bind:src="url" />
+      <img :src="url" />
       <!-- <img url="http://image.png"> -->
     </div>
     <span class="item-name">{{ name }}</span>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "nav-item",
+  name: 'nav-item',
   props: {
     url: {
       type: String,
@@ -22,7 +22,7 @@ export default {
       required: true
     }
   }
-};
+}
 </script>
 
 <style>

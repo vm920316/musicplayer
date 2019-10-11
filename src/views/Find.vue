@@ -2,14 +2,19 @@
   <div class="find">
     <div class="head">
       <div class="head-MusicRecognition"></div>
-      <input type="text" placeholder name="head-search" id="head-search" />
+      <input
+        type="text"
+        placeholder
+        name="head-search"
+        id="head-search"
+      />
       <div class="head-MusicPlaying"></div>
     </div>
 
     <div class="find-content">
       <div class="navbar"></div>
 
-      <NavItems :navItems="navItems"></NavItems>
+      <NavItems :nav-items="navItems"></NavItems>
 
       <div style="width:100%;border-bottom:1px solid rgb(199, 199, 199);margin:0;"></div>
 
@@ -20,7 +25,11 @@
             <span class="letter-split">|</span>
             <span class="letter-space">新歌</span>
           </div>
-          <input type="button" value="更多新碟" id="main-button" />
+          <input
+            type="button"
+            value="更多新碟"
+            id="main-button"
+          />
         </div>
         <div class="main-content">
           <div class="main-content-item">
@@ -48,7 +57,11 @@
           <!-- <div class="main-title-name"> -->
           <span class="letter-space">推荐歌单</span>
           <!-- </div> -->
-          <input type="button" value="歌单广场" id="main-button" />
+          <input
+            type="button"
+            value="歌单广场"
+            id="main-button"
+          />
         </div>
         <div class="main-content">
           <div class="main-content-item">
@@ -107,7 +120,9 @@
             <span class="select-comment">点赞：3168</span>
             <span class="select-comment">评论：493</span>
           </div>
-          <div class="select-comment-more">...</div>
+          <div class="select-comment-more">
+            ...
+          </div>
         </div>
       </div>
 
@@ -127,7 +142,9 @@
             <span class="select-comment">点赞：3168</span>
             <span class="select-comment">评论：493</span>
           </div>
-          <div class="select-comment-more">...</div>
+          <div class="select-comment-more">
+            ...
+          </div>
         </div>
       </div>
 
@@ -161,39 +178,39 @@
 </template>
 
 <script>
-import NavItems from "@/components/nav-items/index";
+import NavItems from '@/components/nav-items/index'
 export default {
-  name: "find",
+  name: 'find',
   components: {
     NavItems: NavItems
   },
-  data() {
+  data () {
     return {
       navItems: [
         {
-          url: "@/assets/logo.png",
-          name: "每日推荐"
+          url: '@/assets/logo.png',
+          name: '每日推荐'
         },
         {
-          url: "",
-          name: "歌单"
+          url: '',
+          name: '歌单'
         },
         {
-          url: "",
-          name: "排行榜"
+          url: '',
+          name: '排行榜'
         },
         {
-          url: "",
-          name: "电台"
+          url: '',
+          name: '电台'
         },
         {
-          url: "",
-          name: "直播"
+          url: '',
+          name: '直播'
         }
       ]
-    };
+    }
   }
-};
+}
 </script>
 
 <style>
@@ -204,7 +221,7 @@ export default {
 
 /* .find {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   text-align: center;
   margin: 10px auto 0px;
 } */

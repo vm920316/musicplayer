@@ -1,40 +1,57 @@
 <template>
-  <div id='login'>
-    <div class='logo'>{{ $t('logo-slot') }}</div>
+  <div id="login">
+    <div class="logo">
+      {{ $t("logo-slot") }}
+    </div>
     <form>
-      <div class='form-item'>
-        <!--<label for='username'>Username:</label>-->
+      <div class="form-item">
+        <!--<label for="username">Username:</label>-->
         <input
-          type='text'
-          name='username'
-          id='username'
-          :placeholder='$t("username-placeholder")'
-          v-model='model.username'
-          @focus='focus'
+          type="text"
+          name="username"
+          id="username"
+          :placeholder="$t('username-placeholder')"
+          v-model="model.username"
+          @focus="focus"
         />
       </div>
 
-      <div class='form-item'>
-        <!--<label for='password'>Password:</label>-->
+      <div class="form-item">
+        <!--<label for="password">Password:</label>-->
         <input
-          type='password'
-          name='password'
-          id='password'
-          :placeholder='$t("password-placeholder")'
-          v-model='model.password'
-          @focus='focus'
+          type="password"
+          name="password"
+          id="password"
+          :placeholder="$t('password-placeholder')"
+          v-model="model.password"
+          @focus="focus"
         />
       </div>
-      <div class='tiaoyue'>
-        <input type='checkbox' name='agreement' id='agreement' v-model='agreement'/>
-        <!-- <div class='quare-gx'>&#9745;&#65039;</div> -->
-        <label class='text-zs' for='agreement'>{{ $t("agreement-content") }}</label>
+      <div class="tiaoyue">
+        <input
+          type="checkbox"
+          name="agreement"
+          id="agreement"
+          v-model="agreement"
+        />
+        <!-- <div class="quare-gx">&#9745;&#65039;</div> -->
+        <label
+          class="text-zs"
+          for="agreement"
+        >{{ $t("agreement-content") }}</label>
       </div>
-      <div v-show='showError' class='yincanxinxi'>
-        <span>{{errorMassage}}</span>
+      <div
+        v-show="showError"
+        class="yincanxinxi"
+      >
+        <span>{{ errorMassage }}</span>
       </div>
-      <div class='form-footer'>
-        <input type='button' @click='submit' :value='$t("login-button-content")' />
+      <div class="form-footer">
+        <input
+          type="button"
+          @click="submit"
+          :value="$t('login-button-content')"
+        />
       </div>
     </form>
   </div>
@@ -183,17 +200,17 @@ export default {
   width: 14px;
   height: 14px;
   /* background-color: whitesmoke;  */
-  border:1px solid white;
+  border: 1px solid white;
   border-radius: 3px;
   position: absolute;
 }
 #agreement:checked:after {
-    background-color: whitesmoke;
-    content: "✓";
-    color:black;
-    font-size: 14px;
-    line-height: 14px;
-    text-align: center;
+  background-color: whitesmoke;
+  content: "✓";
+  color: black;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
 }
 .text-zs {
   display: block;

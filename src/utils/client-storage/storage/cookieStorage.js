@@ -99,27 +99,27 @@ let cookieProvider = (function () {
 })()
 
 class CookieStorage {
-  get length () {
+  get length() {
     return cookieProvider.getAll().length
   }
 
-  getItem (key) {
+  getItem(key) {
     return cookieProvider.get(key)
   }
 
-  setItem (key, value) {
+  setItem(key, value) {
     return cookieProvider.add(key, value)
   }
 
-  removeItem (key) {
+  removeItem(key) {
     return this.setItem(key, null)
   }
 
-  clear () {
+  clear() {
     return cookieProvider.clear()
   }
 
-  key (index) {
+  key(index) {
     const cookies = cookieProvider.getAll()
     const cookie = cookies[index]
     if (cookie) {

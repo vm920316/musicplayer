@@ -1,0 +1,4 @@
+build/*.js
+mad_fingure
+test/unit
+dist/

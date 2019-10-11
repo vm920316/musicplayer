@@ -1,12 +1,17 @@
 <template>
   <div class="nav-items">
-      <NavItem v-for="(item, index) in navItems" :key="index" v-bind:url="item.url" v-bind:name="item.name"></NavItem>
+    <NavItem
+      v-for="(item, index) in navItems"
+      :key="index"
+      :url="item.url"
+      :name="item.name"
+    ></NavItem>
 
-      <!-- <template v-for="(item, index) in navItems">
-        <NavItem  :key="index" v-bind:url="item.url" v-bind:name="item.name"></NavItem>
+    <!-- <template v-for="(item, index) in navItems">
+        <NavItem  :key="index" :url="item.url" :name="item.name"></NavItem>
       </template> -->
 
-      <!-- <div class="nav-item">
+    <!-- <div class="nav-item">
         <div class="item-pho"></div>
         <span class="item-name">每日推荐</span>
       </div>
@@ -26,20 +31,20 @@
         <div class="item-pho"></div>
         <span class="item-name">直播</span>
       </div> -->
-    </div>
+  </div>
 </template>
 
 <script>
 import NavItem1 from '@/components/nav-items/nav-item'
 export default {
-    components: {
-        NavItem: NavItem1
-    },
-    props: {
-        navItems: {
-            type: Array
-        }
+  components: {
+    NavItem: NavItem1
+  },
+  props: {
+    navItems: {
+      type: Array
     }
+  }
 }
 </script>
 

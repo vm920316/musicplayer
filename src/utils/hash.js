@@ -1,4 +1,4 @@
-export default function hash (val) {
+export default function hash(val) {
   let hash = 0
   if (val === null || val === undefined) {
     return hash

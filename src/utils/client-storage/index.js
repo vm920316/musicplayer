@@ -1,15 +1,15 @@
 import getStorage from './storage'
 export default {
-  install (Vue, options = {}) {
+  install(Vue, options = {}) {
     const storage = getStorage(options)
     const getLsDescripter = (name) => {
       return {
         configurable: false,
         enumerable: false,
-        get () {
+        get() {
           return storage
         },
-        set () {
+        set() {
           console.error(`can not set the ${name}`)
         }
       }
