@@ -40,9 +40,9 @@
           />
         </song-list>
         <horizontal-line></horizontal-line>
-        <cloud-country-header></cloud-country-header>
-        <horizontal-line></horizontal-line>
 
+        <cloud-country-header :title="cloudCountryTitle"></cloud-country-header>
+        <horizontal-line></horizontal-line>
         <template v-for="(selected, i) in selecteds">
           <cloud-country-selected
             :key="i"
@@ -72,6 +72,7 @@ import SongList from '@/components/song-list'
 import HorizontalLine from '@/components/horizontal-line'
 import CloudCountryHeader from '@/components/cloud-country/header'
 import CloudCountrySelected from '@/components/cloud-country/selected'
+import findService from '@/services/find'
 export default {
   name: 'find',
   components: {
@@ -86,70 +87,24 @@ export default {
   },
   data () {
     return {
-      navItems: [
-        {
-          url: 'Recommended-icon.png',
-          name: '每日推荐'
-        },
-        {
-          url: 'Songlist-icon.png',
-          name: '歌单'
-        },
-        {
-          url: 'Songchart-icon.png',
-          name: '排行榜'
-        },
-        {
-          url: 'radio-icon.png',
-          name: '电台'
-        },
-        {
-          url: 'LiveVideo-icon.png',
-          name: '直播'
-        }
-      ],
+      navItems: [],
       showFindSearch: false,
-      recommendSongs: [{
-        name: '童话',
-        author: '光良'
-      }, {
-        name: '逍遥叹（仙剑奇侠传）',
-        author: '胡歌'
-      }, {
-        name: '时光诛仙',
-        author: '任贤齐'
-      }, {
-        name: '童话',
-        author: '光良'
-      }, {
-        name: '逍遥叹（仙剑奇侠传）',
-        author: '胡歌'
-      }, {
-        name: '时光诛仙',
-        author: '任贤齐'
-      }],
-      newSongs: [{
-        name: '童话',
-        author: '光良'
-      }, {
-        name: '逍遥叹（仙剑奇侠传）',
-        author: '胡歌'
-      }, {
-        name: '时光诛仙',
-        author: '任贤齐'
-      }],
-      selecteds: [{
-        tittle: '原创精选：好听的古风歌曲',
-        content: 'Lao-干妈-生死江湖',
-        likes: 3168,
-        reviews: 493
-      }, {
-        tittle: '原创精选：好听的古风歌曲',
-        content: 'Lao-干妈-生死江湖',
-        likes: 3168,
-        reviews: 493
-      }]
+      recommendSongs: [],
+      newSongs: [],
+      cloudCountryTitle: '',
+      selecteds: []
     }
+  },
+  created() {
+    findService.findPageData().then(data => {
+      this.recommendSongs = data.recommendSongs || []
+      this.newSongs = data.newSongs || []
+      this.selecteds = data.countrySelecteds.selecteds || []
+      this.cloudCountryTitle = data.countrySelecteds.title
+    })
+    findService.navItems().then(data => {
+      this.navItems = data || []
+    })
   },
   methods: {
     openFindSearch() {

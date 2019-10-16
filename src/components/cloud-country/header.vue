@@ -1,13 +1,18 @@
 <template>
   <div class="yuncun">
-    <span class="yuncun-title">云村精选</span>
+    <span class="yuncun-title">{{ title }}</span>
     <span class="yuncun-refresh">刷新内容</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'cloud-country-header'
+  name: 'cloud-country-header',
+  props: {
+    title: {
+      type: String
+    }
+  }
 }
 </script>
 

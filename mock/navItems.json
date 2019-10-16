@@ -1,0 +1,22 @@
+[
+    {
+        "url": "Recommended-icon.png",
+        "name": "每日推荐"
+    },
+    {
+        "url": "Songlist-icon.png",
+        "name": "歌单"
+    },
+    {
+        "url": "Songchart-icon.png",
+        "name": "排行榜"
+    },
+    {
+        "url": "radio-icon.png",
+        "name": "电台"
+    },
+    {
+        "url": "LiveVideo-icon.png",
+        "name": "直播"
+    }
+]
