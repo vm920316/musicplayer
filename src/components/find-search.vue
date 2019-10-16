@@ -16,6 +16,7 @@
       <img
         id="pho"
         src="~@/assets/person-icon.png"
+        @click="goHome"
       >
     </div>
     <div class="main">
@@ -93,6 +94,9 @@ export default {
   methods: {
     close() {
       this.$emit('close')
+    },
+    goHome() {
+      this.$router.push('/')
     }
   },
   directives: {
