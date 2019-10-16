@@ -42,7 +42,7 @@
       </div>
       <div
         v-show="showError"
-        class="yincanxinxi"
+        class="error-info"
       >
         <span>{{ errorMassage }}</span>
       </div>
@@ -140,7 +140,7 @@ export default {
   background-color: white;
   width: 150px;
   height: 150px;
-  margin: 150px auto 190px auto;
+  margin: 130px auto 130px auto;
   text-align: center;
   line-height: 150px;
   border-radius: 75px;
@@ -150,14 +150,6 @@ export default {
   text-align: center;
 }
 
-/*.form-item label {
-  display: inline-block;
-  width: 30%;
-  text-align: right;
-  margin-right: 10px;
-  letter-spacing: 2px;
-  color: gray;
-}*/
 .form-item input {
   display: inline-block;
   width: 80%;
@@ -223,7 +215,7 @@ export default {
   text-align: center;
   margin: 0px auto 0 auto;
 }
-.yincanxinxi {
+.error-info {
   color: red;
   font-family: "微软雅黑";
   font-size: 14px;
