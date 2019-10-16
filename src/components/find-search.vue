@@ -17,7 +17,6 @@
         src="~@/assets/person-icon.png"
       >
     </div>
-
     <div class="main">
       <div class="advertising"></div>
 
@@ -31,41 +30,66 @@
           >
         </div>
         <div class="history-items">
-          <div class="history-item">童话</div>
-          <div class="history-item">I love you 3000 </div>
-          <div class="history-item">胡歌：天长地久-敢不敢爱</div>
-          <div class="history-item">马步摇~网络歌曲</div>
+          <div class="history-item">
+            童话
+          </div>
+          <div class="history-item">
+            I love you 3000
+          </div>
+          <div class="history-item">
+            胡歌：天长地久-敢不敢爱
+          </div>
+          <div class="history-item">
+            马步摇~网络歌曲
+          </div>
         </div>
       </div>
 
       <div>
-        <div class="hot-title">热搜版</div>
-        <div class="hot-item">
-          <div class="hot-item-num">1</div>
-          <div class="hot-item-content">
-            <div class="content-title"><strong>桃子</strong></div>
-            <div class="content-text">这是IU写给雪梨的歌啊</div>
-          </div>
-          <div class="hot-item-like">3841530</div>
+        <div class="hot-title">
+          热搜版
         </div>
         <div class="hot-item">
-          <div class="hot-item-num">1</div>
-          <div class="hot-item-content">
-            <div class="content-title"><strong>桃子</strong></div>
-            <div class="content-text">这是IU写给雪梨的歌啊</div>
+          <div class="hot-item-num">
+            1
           </div>
-          <div class="hot-item-like">3841530</div>
+          <div class="hot-item-content">
+            <div class="content-title">
+              <strong>桃子</strong>
+            </div>
+            <div class="content-text">
+              这是IU写给雪梨的歌啊
+            </div>
+          </div>
+          <div class="hot-item-like">
+            3841530
+          </div>
+        </div>
+        <div class="hot-item">
+          <div class="hot-item-num">
+            1
+          </div>
+          <div class="hot-item-content">
+            <div class="content-title">
+              <strong>桃子</strong>
+            </div>
+            <div class="content-text">
+              这是IU写给雪梨的歌啊
+            </div>
+          </div>
+          <div class="hot-item-like">
+            3841530
+          </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
-  methods:{
-    close(){
+  methods: {
+    close() {
       this.$emit('close')
     }
   }
