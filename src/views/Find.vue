@@ -190,19 +190,19 @@ export default {
           name: '每日推荐'
         },
         {
-          url: 'Recommended-icon.png',
+          url: 'Songlist-icon.png',
           name: '歌单'
         },
         {
-          url: 'Recommended-icon.png',
+          url: 'Songchart-icon.png',
           name: '排行榜'
         },
         {
-          url: 'Recommended-icon.png',
+          url: 'radio-icon.png',
           name: '电台'
         },
         {
-          url: 'Recommended-icon.png',
+          url: 'LiveVideo-icon.png',
           name: '直播'
         }
       ],
