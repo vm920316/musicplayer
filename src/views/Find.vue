@@ -163,29 +163,7 @@
       <div style="width:100%;border-bottom:8px solid rgb(240, 240, 240);margin-top:6px;"></div>
     </div>
 
-    <div class="footer">
-      <div class="footer-item">
-        <div class="footer-pho"></div>
-        <span class="footer-name">发现</span>
-      </div>
-
-      <div class="footer-item">
-        <div class="footer-pho"></div>
-        <span class="footer-name">视频</span>
-      </div>
-      <div class="footer-item">
-        <div class="footer-pho"></div>
-        <span class="footer-name">我的</span>
-      </div>
-      <div class="footer-item">
-        <div class="footer-pho"></div>
-        <span class="footer-name">云村</span>
-      </div>
-      <div class="footer-item">
-        <div class="footer-pho"></div>
-        <span class="footer-name">账号</span>
-      </div>
-    </div>
+    <gl-footer></gl-footer>
   </div>
   <find-search
     v-else
@@ -195,12 +173,14 @@
 
 <script>
 import FindSearch from '@/components/find-search'
-import NavItems from '@/components/nav-items/index'
+import NavItems from '@/components/nav-items'
+import Footer from '@/components/footer'
 export default {
   name: 'find',
   components: {
     NavItems: NavItems,
-    FindSearch: FindSearch
+    FindSearch: FindSearch,
+    GlFooter: Footer
   },
   data () {
     return {
@@ -443,30 +423,5 @@ export default {
   -moz-transform: rotate(90deg); /* Firefox */
   -webkit-transform: rotate(90deg); /* Safari 和 Chrome */
   -o-transform: rotate(90deg); /* Opera */
-}
-.footer {
-  width: 100%;
-  height: 70px;
-  background-color: rgb(240, 240, 240);
-  position: fixed;
-  bottom: 0px;
-  display: flex;
-  justify-content: space-between;
-}
-.footer-item {
-  width: 20%;
-}
-.footer-pho {
-  width: 30px;
-  height: 30px;
-  background-color: pink;
-  border-radius: 15px;
-  text-align: center;
-  margin: 5px auto;
-}
-.footer-name {
-  display: block;
-  font-size: 11px;
-  text-align: center;
 }
 </style>

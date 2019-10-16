@@ -7,13 +7,18 @@
       :value="$t(&quot;logout-button-content&quot;)"
       @click="logout"
     >
+    <gl-footer></gl-footer>
   </div>
 </template>
 
 <script>
 import { TOKEN_KEY } from '@/utils/contants'
+import Footer from '@/components/footer'
 export default {
   name: 'home',
+  components: {
+    GlFooter: Footer
+  },
   methods: {
     logout () {
       this.$ls.remove(TOKEN_KEY)
