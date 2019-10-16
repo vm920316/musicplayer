@@ -4,7 +4,11 @@
     v-if="!showFindSearch"
   >
     <div class="head">
-      <div class="head-MusicRecognition"></div>
+      <!-- <div class="head-MusicRecognition"></div> -->
+      <img
+        class="head-MusicRecognition"
+        src="~@/assets/listen-icon.png"
+      >
       <input
         type="text"
         placeholder
@@ -12,7 +16,11 @@
         id="head-search"
         @click="openFindSearch"
       />
-      <div class="head-MusicPlaying"></div>
+      <!-- <div class="head-MusicPlaying"></div> -->
+      <img
+        class="head-MusicPlaying"
+        src="~@/assets/play-icon.png"
+      >
     </div>
 
     <div class="find-content">
@@ -262,7 +270,6 @@ export default {
 .head-MusicPlaying {
   width: 40px;
   height: 40px;
-  background-color: pink;
   flex-shrink: 0;
 }
 
@@ -272,7 +279,6 @@ export default {
   border-radius: 20px;
   background-color: rgb(240, 240, 240);
   border: 0px solid red;
-  margin: 0px 10px;
 }
 
 .navbar {
