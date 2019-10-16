@@ -1,5 +1,8 @@
 <template>
-  <div class="find">
+  <div
+    class="find"
+    v-if="!showFindSearch"
+  >
     <div class="head">
       <div class="head-MusicRecognition"></div>
       <input
@@ -7,6 +10,7 @@
         placeholder
         name="head-search"
         id="head-search"
+        @click="openFindSearch"
       />
       <div class="head-MusicPlaying"></div>
     </div>
@@ -175,14 +179,20 @@
       </div>
     </div>
   </div>
+  <find-search
+    v-else
+    @close="closeFindSearch"
+  ></find-search>
 </template>
 
 <script>
+import FindSearch from '@/components/find-search'
 import NavItems from '@/components/nav-items/index'
 export default {
   name: 'find',
   components: {
-    NavItems: NavItems
+    NavItems: NavItems,
+    FindSearch: FindSearch
   },
   data () {
     return {
@@ -207,18 +217,22 @@ export default {
           url: '',
           name: '直播'
         }
-      ]
+      ],
+      showFindSearch: false
+    }
+  },
+  methods: {
+    openFindSearch() {
+      this.showFindSearch = true
+    },
+    closeFindSearch() {
+      this.showFindSearch = false
     }
   }
 }
 </script>
 
-<style>
-* {
-  padding: 0px;
-  margin: 0px;
-}
-
+<style scoped>
 /* .find {
   width: 100%;
   height: 100%;
