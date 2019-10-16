@@ -140,7 +140,7 @@ export default {
   background-color: white;
   width: 150px;
   height: 150px;
-  margin: 130px auto 130px auto;
+  margin: 20% auto 20% auto;
   text-align: center;
   line-height: 150px;
   border-radius: 75px;
