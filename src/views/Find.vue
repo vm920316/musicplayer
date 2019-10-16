@@ -1,37 +1,21 @@
 <template>
-  <div
-    class="find"
-    v-if="!showFindSearch"
-  >
-    <div class="head">
-      <!-- <div class="head-MusicRecognition"></div> -->
-      <img
-        class="head-MusicRecognition"
-        src="~@/assets/listen-icon.png"
-      >
-      <input
-        type="text"
-        placeholder
-        name="head-search"
-        id="head-search"
-        @click="openFindSearch"
-      />
-      <!-- <div class="head-MusicPlaying"></div> -->
-      <img
-        class="head-MusicPlaying"
-        src="~@/assets/play-icon.png"
-      >
-    </div>
+  <div class="find">
+    <template v-if="!showFindSearch">
+      <find-header @open-find-search="openFindSearch"></find-header>
 
-    <div class="find-content">
-      <div class="navbar"></div>
+      <div class="find-content">
+        <div class="navbar"></div>
 
-      <NavItems :nav-items="navItems"></NavItems>
+        <nav-items :nav-items="navItems"></nav-items>
 
-      <div style="width:100%;border-bottom:1px solid rgb(199, 199, 199);margin:0;"></div>
+        <horizontal-line
+          width="100%"
+          border-bottom-size="1px"
+          border-bottom-color="rgb(199, 199, 199"
+          margin-top="0px"
+        ></horizontal-line>
 
-      <div class="main">
-        <div class="main-title">
+        <song-list :content-list="newSongs">
           <div class="main-title-name">
             <span class="letter-space">新碟</span>
             <span class="letter-split">|</span>
@@ -40,147 +24,65 @@
           <input
             type="button"
             value="更多新碟"
-            id="main-button"
+            class="main-button"
           />
-        </div>
-        <div class="main-content">
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">童话</span>
-            <span class="main-content-item-name">演唱者：光良</span>
-          </div>
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">逍遥叹（仙剑奇侠传）</span>
-            <span class="main-content-item-name">演唱者：胡歌</span>
-          </div>
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">时光诛仙</span>
-            <span class="main-content-item-name">演唱者：任贤齐</span>
-          </div>
-        </div>
-      </div>
+        </song-list>
+        <horizontal-line></horizontal-line>
 
-      <div style="width:100%;border-bottom:8px solid rgb(240, 240, 240);margin-top:6px;"></div>
-
-      <div class="main">
-        <div class="main-title">
+        <song-list :content-list="recommendSongs">
           <!-- <div class="main-title-name"> -->
           <span class="letter-space">推荐歌单</span>
           <!-- </div> -->
           <input
             type="button"
             value="歌单广场"
-            id="main-button"
+            class="main-button"
           />
-        </div>
-        <div class="main-content">
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">童话</span>
-            <span class="main-content-item-name">演唱者：光良</span>
-          </div>
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">逍遥叹（仙剑奇侠传）</span>
-            <span class="main-content-item-name">演唱者：胡歌</span>
-          </div>
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">时光诛仙</span>
-            <span class="main-content-item-name">演唱者：任贤齐</span>
-          </div>
-        </div>
-        <div class="main-content">
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">童话</span>
-            <span class="main-content-item-name">演唱者：光良</span>
-          </div>
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">逍遥叹（仙剑奇侠传）</span>
-            <span class="main-content-item-name">演唱者：胡歌</span>
-          </div>
-          <div class="main-content-item">
-            <div class="main-content-item-pho"></div>
-            <span class="main-content-item-music">时光诛仙</span>
-            <span class="main-content-item-name">演唱者：任贤齐</span>
-          </div>
-        </div>
+        </song-list>
+        <horizontal-line></horizontal-line>
+        <cloud-country-header></cloud-country-header>
+        <horizontal-line></horizontal-line>
+
+        <template v-for="(selected, i) in selecteds">
+          <cloud-country-selected
+            :key="i"
+            :title="selected.title"
+            :content="selected.content"
+            :likes="selected.likes"
+            :reviews="selected.reviews"
+          ></cloud-country-selected>
+          <horizontal-line :key="-i-1"></horizontal-line>
+        </template>
       </div>
-
-      <div style="width:100%;border-bottom:8px solid rgb(240, 240, 240);margin-top:6px;"></div>
-
-      <div class="yuncun">
-        <span class="yuncun-title">云村精选</span>
-        <span class="yuncun-refresh">刷新内容</span>
-      </div>
-
-      <div class="select">
-        <span class="select-introduction">原创精选：好听的古风歌曲</span>
-        <div class="select-content">
-          <div class="select-content-pho"></div>
-          <div class="select-between">
-            <span class="select-content-name">Lao-干妈-生死江湖</span>
-            <div class="select-person-photo"></div>
-          </div>
-        </div>
-        <div class="comment">
-          <div class="select-comment-area">
-            <span class="select-comment">点赞：3168</span>
-            <span class="select-comment">评论：493</span>
-          </div>
-          <div class="select-comment-more">
-            ...
-          </div>
-        </div>
-      </div>
-
-      <div style="width:100%;border-bottom:8px solid rgb(240, 240, 240);margin-top:6px;"></div>
-
-      <div class="select">
-        <span class="select-introduction">原创精选：好听的古风歌曲</span>
-        <div class="select-content">
-          <div class="select-content-pho"></div>
-          <div class="select-between">
-            <span class="select-content-name">Lao-干妈-生死江湖</span>
-            <div class="select-person-photo"></div>
-          </div>
-        </div>
-        <div class="comment">
-          <div class="select-comment-area">
-            <span class="select-comment">点赞：3168</span>
-            <span class="select-comment">评论：493</span>
-          </div>
-          <div class="select-comment-more">
-            ...
-          </div>
-        </div>
-      </div>
-
-      <div style="width:100%;border-bottom:8px solid rgb(240, 240, 240);margin-top:6px;"></div>
-    </div>
-
+    </template>
+    <find-search
+      v-else
+      @close="closeFindSearch"
+    ></find-search>
     <gl-footer></gl-footer>
   </div>
-  <find-search
-    v-else
-    @close="closeFindSearch"
-  ></find-search>
 </template>
 
 <script>
 import FindSearch from '@/components/find-search'
 import NavItems from '@/components/nav-items'
 import Footer from '@/components/footer'
+import FindHeader from '@/components/find-header'
+import SongList from '@/components/song-list'
+import HorizontalLine from '@/components/horizontal-line'
+import CloudCountryHeader from '@/components/cloud-country/header'
+import CloudCountrySelected from '@/components/cloud-country/selected'
 export default {
   name: 'find',
   components: {
     NavItems: NavItems,
     FindSearch: FindSearch,
-    GlFooter: Footer
+    GlFooter: Footer,
+    FindHeader: FindHeader,
+    SongList: SongList,
+    HorizontalLine: HorizontalLine,
+    CloudCountryHeader: CloudCountryHeader,
+    CloudCountrySelected: CloudCountrySelected
   },
   data () {
     return {
@@ -206,7 +108,47 @@ export default {
           name: '直播'
         }
       ],
-      showFindSearch: false
+      showFindSearch: false,
+      recommendSongs: [{
+        name: '童话',
+        author: '光良'
+      }, {
+        name: '逍遥叹（仙剑奇侠传）',
+        author: '胡歌'
+      }, {
+        name: '时光诛仙',
+        author: '任贤齐'
+      }, {
+        name: '童话',
+        author: '光良'
+      }, {
+        name: '逍遥叹（仙剑奇侠传）',
+        author: '胡歌'
+      }, {
+        name: '时光诛仙',
+        author: '任贤齐'
+      }],
+      newSongs: [{
+        name: '童话',
+        author: '光良'
+      }, {
+        name: '逍遥叹（仙剑奇侠传）',
+        author: '胡歌'
+      }, {
+        name: '时光诛仙',
+        author: '任贤齐'
+      }],
+      selecteds: [{
+        tittle: '原创精选：好听的古风歌曲',
+        content: 'Lao-干妈-生死江湖',
+        likes: 3168,
+        reviews: 493
+      }, {
+        tittle: '原创精选：好听的古风歌曲',
+        content: 'Lao-干妈-生死江湖',
+        likes: 3168,
+        reviews: 493
+      }]
     }
   },
   methods: {
@@ -221,12 +163,6 @@ export default {
 </script>
 
 <style scoped>
-/* .find {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  margin: 10px auto 0px;
-} */
 .find-content {
   margin: 70px auto;
 }
@@ -234,31 +170,6 @@ export default {
   width: 90%;
   text-align: center;
   margin: 15px auto 0px;
-}
-
-.head {
-  width: 100%;
-  height: 40px;
-  display: flex;
-  padding: 15px 0 5px;
-  position: fixed;
-  top: 0px;
-  background-color: white;
-}
-
-.head-MusicRecognition,
-.head-MusicPlaying {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-}
-
-#head-search {
-  height: 40px;
-  width: 100%;
-  border-radius: 20px;
-  background-color: rgb(240, 240, 240);
-  border: 0px solid red;
 }
 
 .navbar {
@@ -269,12 +180,6 @@ export default {
   top: 45px;
 }
 
-.main-title {
-  width: 100%;
-  height: 30px;
-  display: flex;
-  justify-content: space-between;
-}
 /* .main-title-name{display:flex;width: 50%;} */
 .letter-space {
   letter-spacing: 2px;
@@ -284,144 +189,5 @@ export default {
 .letter-split {
   margin: 0 10px;
   line-height: 30px;
-}
-#main-button {
-  border-radius: 13px;
-  border: 1px solid rgb(199, 199, 199);
-  width: 100px;
-  height: 26px;
-  background-color: transparent;
-  margin: 2px 0;
-  font-family: "微软雅黑";
-}
-
-.main-content {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-.main-content-item {
-  width: 106px;
-  height: 160px;
-}
-.main-content-item-pho {
-  width: 106px;
-  height: 106px;
-  background-color: pink;
-  border-radius: 10px;
-}
-.main-content-item-music {
-  display: block;
-  font-size: 14px;
-  font-family: "微软雅黑";
-  text-align: left;
-  margin-top: 5px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.main-content-item-name {
-  display: block;
-  font-size: 12px;
-  color: rgb(199, 199, 199);
-  font-family: "微软雅黑";
-  text-align: left;
-  margin-top: 3px;
-}
-
-.yuncun {
-  display: flex;
-  justify-content: space-between;
-  height: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgb(199, 199, 199);
-}
-.yuncun-title {
-  display: block;
-  font-size: 14px;
-  line-height: 20px;
-}
-.yuncun-refresh {
-  display: block;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-/* .select {
-  margin: 0px;
-} */
-.select-introduction {
-  display: block;
-  height: 40px;
-  line-height: 40px;
-  color: rgb(199, 199, 199);
-  text-align: left;
-  font-size: 14px;
-  margin-top: -15px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.select-content {
-  height: 200px;
-  background-color: rgb(240, 240, 240);
-  border-radius: 10px;
-}
-.select-content-pho {
-  height: 160px;
-  background-color: pink;
-  border-radius: 10px 10px 0 0;
-}
-.select-between {
-  display: flex;
-  justify-content: space-between;
-}
-.select-content-name {
-  display: block;
-  font-size: 16px;
-  width: 70%;
-  line-height: 40px;
-  text-align: left;
-  margin-left: 10px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.select-person-photo {
-  width: 30px;
-  height: 30px;
-  background-color: pink;
-  border-radius: 15px;
-  line-height: 40px;
-  margin: 5px 10px 5px 0px;
-}
-
-.comment {
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-}
-.select-comment-area {
-  display: flex;
-  justify-content: space-between;
-  width: 60%;
-}
-.select-comment {
-  line-height: 40px;
-  font-size: 14px;
-  color: rgb(199, 199, 199);
-  display: block;
-  width: 50%;
-  text-align: left;
-}
-.select-comment-more {
-  font-size: 20px;
-  color: rgb(199, 199, 199);
-  display: block;
-  transform: rotate(90deg);
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -moz-transform: rotate(90deg); /* Firefox */
-  -webkit-transform: rotate(90deg); /* Safari 和 Chrome */
-  -o-transform: rotate(90deg); /* Opera */
 }
 </style>
