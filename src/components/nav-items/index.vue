@@ -66,7 +66,7 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  background-color: pink;
+  background-image: linear-gradient(rgb(250, 146, 177), rgb(250, 166, 117));
   margin: 0 auto 5px;
 }
 .nav-items .nav-item .item-name {

@@ -186,23 +186,23 @@ export default {
     return {
       navItems: [
         {
-          url: '@/assets/logo.png',
+          url: 'Recommended-icon.png',
           name: '每日推荐'
         },
         {
-          url: '',
+          url: 'Recommended-icon.png',
           name: '歌单'
         },
         {
-          url: '',
+          url: 'Recommended-icon.png',
           name: '排行榜'
         },
         {
-          url: '',
+          url: 'Recommended-icon.png',
           name: '电台'
         },
         {
-          url: '',
+          url: 'Recommended-icon.png',
           name: '直播'
         }
       ],
