@@ -6,6 +6,7 @@
         placeholder="我还想她-林俊杰"
         id="head-input"
         name="head-input"
+        v-focus
       >
       <span
         @click="close"
@@ -88,9 +89,17 @@
 
 <script>
 export default {
+  name: 'find-search',
   methods: {
     close() {
       this.$emit('close')
+    }
+  },
+  directives: {
+    focus: {
+      inserted(el) {
+        el.focus()
+      }
     }
   }
 }
@@ -120,6 +129,7 @@ export default {
   background-image: url("~@/assets/search-icon.png");
   background-position: 10px 10px;
   background-repeat: no-repeat;
+  outline: none;
 }
 #cancel-bt {
   display: block;
