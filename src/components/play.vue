@@ -1,10 +1,17 @@
 <template>
   <div class="play">
     <div class="head">
-      <div class="back"></div>
+      <div
+        class="back"
+        @click="goBack"
+      ></div>
       <div class="song-name">
-        <div class="song-content">我还想她</div>
-        <div class="player">林俊杰></div>
+        <div class="song-content">
+          我还想她
+        </div>
+        <div class="player">
+          林俊杰>
+        </div>
       </div>
       <div class="share"></div>
     </div>
@@ -53,7 +60,11 @@
 
 <script>
 export default {
-
+  methods: {
+    goBack() {
+      this.$router.back()
+    }
+  }
 }
 </script>
 

@@ -15,6 +15,7 @@
     <!-- <div class="head-MusicPlaying"></div> -->
     <img
       class="head-MusicPlaying"
+      @click="openPlay"
       src="~@/assets/play-icon.png"
     >
   </div>
@@ -26,6 +27,9 @@ export default {
   methods: {
     openFindSearch() {
       this.$emit('open-find-search')
+    },
+    openPlay() {
+      this.$router.push('/play')
     }
   }
 }
