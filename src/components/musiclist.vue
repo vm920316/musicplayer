@@ -50,8 +50,12 @@
       <div>
         <div class="list-head">
           <div class="list-icon"></div>
-          <div class="list-title">播放全部</div>
-          <div class="list-collection">+收藏</div>
+          <div class="list-title">
+            播放全部
+          </div>
+          <div class="list-collection">
+            +收藏
+          </div>
         </div>
         <div class="list-item"></div>
       </div>
