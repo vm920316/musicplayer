@@ -1,10 +1,12 @@
 <template>
   <div class="play">
     <div class="head">
-      <div
+      <!-- <div class="back"></div> -->
+      <img
         class="back"
         @click="goBack"
-      ></div>
+        src="~@/assets/back-icon.png"
+      >
       <div class="song-name">
         <div class="song-content">
           我还想她
@@ -13,7 +15,11 @@
           林俊杰>
         </div>
       </div>
-      <div class="share"></div>
+      <!-- <div class="share"></div> -->
+      <img
+        class="share"
+        src="~@/assets/share-icon.png"
+      >
     </div>
 
     <div class="main">
@@ -58,16 +64,34 @@
         <span class="duration">{{ duration | formatTime }}</span>
       </div>
       <div class="play-zone">
-        <div class="play-mode"></div>
+        <!-- <div class="play-mode"></div> -->
+        <img
+          class="play-mode"
+          src="~@/assets/playmode-icon.png"
+        >
         <div class="play-moment">
-          <div class="last-song"></div>
-          <div
+          <!-- <div class="last-song"></div>
+          <div class="play-song"></div>
+          <div class="next-song"></div> -->
+          <img
+            class="last-song"
+            src="~@/assets/last-icon.png"
+          >
+          <img
             class="play-song"
             @click="playOrPause"
-          ></div>
-          <div class="next-song"></div>
+            src="~@/assets/playbtn-icon.png"
+          >
+          <img
+            class="next-song"
+            src="~@/assets/next-icon.png"
+          >
         </div>
-        <div class="play-list"></div>
+        <!-- <div class="play-list"></div> -->
+        <img
+          class="play-list"
+          src="~@/assets/list-icon.png"
+        >
       </div>
     </div>
     <audio-player
@@ -159,7 +183,6 @@ export default {
 .share {
   width: 40px;
   height: 40px;
-  background-color: blue;
 }
 .song-name {
   width: 60%;
@@ -187,9 +210,10 @@ export default {
 .disk {
   width: 300px;
   height: 300px;
-  background-color: blue;
+  background-color: rgb(255, 255, 255, 0.6);
   border-radius: 150px;
   margin: 0px auto;
+  position: relative;
 }
 .opinion {
   width: 90%;
@@ -250,7 +274,6 @@ export default {
   width: 50px;
   height: 50px;
   margin: 10px 0px;
-  background-color: blue;
 }
 .play-moment {
   width: 60%;
@@ -262,12 +285,10 @@ export default {
 .play-moment .next-song {
   width: 50px;
   height: 50px;
-  background-color: blue;
   margin: 10px 0px;
 }
 .play-moment .play-song {
   width: 70px;
   height: 70px;
-  background-color: blue;
 }
 </style>
