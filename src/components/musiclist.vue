@@ -30,19 +30,35 @@
     </div>
     <div class="comment-area">
       <div class="item">
-        <div class="item-pho"></div>
+        <!-- <div class="item-pho"></div> -->
+        <img
+          class="item-pho"
+          src="~@/assets/review-icon.png"
+        >
         <div class="item-num">35</div>
       </div>
       <div class="item">
-        <div class="item-pho"></div>
+        <!-- <div class="item-pho"></div> -->
+        <img
+          class="item-pho"
+          src="~@/assets/download-icon.png"
+        >
         <div class="item-num">146</div>
       </div>
       <div class="item">
-        <div class="item-pho"></div>
+        <!-- <div class="item-pho"></div> -->
+        <img
+          class="item-pho"
+          src="~@/assets/share-icon.png"
+        >
         <div class="item-num">下载</div>
       </div>
       <div class="item">
-        <div class="item-pho"></div>
+        <!-- <div class="item-pho"></div> -->
+        <img
+          class="item-pho"
+          src="~@/assets/list-icon.png"
+        >
         <div class="item-num">多选</div>
       </div>
     </div>
@@ -170,7 +186,6 @@ export default {
 .comment-area .item .item-pho {
   width: 40px;
   height: 40px;
-  background-color: blue;
   margin: auto 10px;
 }
 .comment-area .item .item-num {
