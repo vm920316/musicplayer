@@ -1,45 +1,26 @@
 <template>
   <div class="nav-items">
-    <NavItem
+    <div
+      class="nav-item"
       v-for="(item, index) in navItems"
       :key="index"
-      :url="item.url"
-      :name="item.name"
-    ></NavItem>
+    >
+      <!-- <div class="item-pho"> -->
 
-    <!-- <template v-for="(item, index) in navItems">
-        <NavItem  :key="index" :url="item.url" :name="item.name"></NavItem>
-      </template> -->
-
-    <!-- <div class="nav-item">
-        <div class="item-pho"></div>
-        <span class="item-name">每日推荐</span>
-      </div>
-      <div class="nav-item">
-        <div class="item-pho"></div>
-        <span class="item-name">歌单</span>
-      </div>
-      <div class="nav-item">
-        <div class="item-pho"></div>
-        <span class="item-name">排行榜</span>
-      </div>
-      <div class="nav-item">
-        <div class="item-pho"></div>
-        <span class="item-name">电台</span>
-      </div>
-      <div class="nav-item">
-        <div class="item-pho"></div>
-        <span class="item-name">直播</span>
-      </div> -->
+      <img
+        class="item-pho"
+        :src="require('@/assets/' + item.url)"
+      >
+      <!-- </div> -->
+      <span class="item-name">{{ item.name }}</span>
+      <!-- <span class="item-name">meirituijian</span> -->
+    </div>
   </div>
 </template>
 
 <script>
-import NavItem1 from '@/components/nav-items/nav-item'
 export default {
-  components: {
-    NavItem: NavItem1
-  },
+  name: 'nav-items',
   props: {
     navItems: {
       type: Array
@@ -48,7 +29,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .nav-items {
   display: flex;
   justify-content: space-between;

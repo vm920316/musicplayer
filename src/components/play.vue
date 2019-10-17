@@ -132,7 +132,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.back()
+      this.$store.commit('Play/closeDialog')
     },
     playOrPause() {
       this.beginPlay = !this.beginPlay
