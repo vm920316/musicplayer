@@ -24,7 +24,15 @@
 
     <div class="main">
       <div class="play-bar"></div>
-      <div class="disk"></div>
+      <div class="disk">
+        <div class="disk-black">
+          <!-- <div class="disk-pho"></div> -->
+          <img
+            src="http://pic28.nipic.com/20130401/10857451_144522260134_2.jpg"
+            class="disk-pho"
+          >
+        </div>
+      </div>
       <div class="opinion">
         <img
           class="opinion-item"
@@ -213,10 +221,28 @@ export default {
 .disk {
   width: 300px;
   height: 300px;
-  background-color: rgb(255, 255, 255, 0.6);
+  background-color: rgb(255, 255, 255, 0.3);
   border-radius: 150px;
   margin: 0px auto;
   position: relative;
+}
+.disk-black {
+  width: 280px;
+  height: 280px;
+  border-radius: 140px;
+  background-image: url("~@/assets/disk-icon.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  margin: 10px;
+  box-shadow: 2px 2px 5px #888888;
+}
+.disk-pho {
+  width: 170px;
+  height: 170px;
+  border-radius: 85px;
+  background-color: white;
+  position: absolute;
+  margin: 55px;
 }
 .opinion {
   width: 90%;
