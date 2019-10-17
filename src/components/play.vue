@@ -206,38 +206,38 @@ export default {
 }
 .song-content {
   height: 22px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   color: rgb(240, 240, 240);
 }
 .player {
   height: 18px;
-  font-size: 13px;
-  line-height: 22px;
+  font-size: 11px;
+  line-height: 18px;
   color: rgb(230, 230, 230);
 }
 .play-bar {
-  width: 170px;
-  height: 170px;
+  width: 140px;
+  height: 140px;
   /* background-color: blue; */
   margin: 0px auto;
-  position: fixed;
+  position: absolute;
   top: 70px;
   left: 45%;
   z-index: 1;
 }
 .disk {
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
   background-color: rgb(255, 255, 255, 0.3);
   border-radius: 150px;
-  margin: 110px auto 0px;
+  margin: 80px auto 0px;
   position: relative;
 }
 .disk-black {
-  width: 280px;
-  height: 280px;
-  border-radius: 140px;
+  width: 240px;
+  height: 240px;
+  border-radius: 120px;
   background-image: url("~@/assets/disk-icon.png");
   background-repeat: no-repeat;
   position: absolute;
@@ -245,44 +245,48 @@ export default {
   box-shadow: 2px 2px 5px #888888;
 }
 .disk-pho {
-  width: 170px;
-  height: 170px;
-  border-radius: 85px;
+  width: 140px;
+  height: 140px;
+  border-radius: 70px;
   background-color: white;
   position: absolute;
-  margin: 55px;
+  margin: 50px;
 }
 .opinion {
   width: 90%;
-  height: 60px;
-  margin: 70px auto 40px;
+  /* height: 60px; */
+  margin: 50px auto 0px;
   display: flex;
   justify-content: space-between;
 }
 .opinion-item {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .footer {
   margin: 0px auto;
   width: 90%;
-  height: 120px;
+  /* height: 120px; */
 }
 .progress {
-  margin-bottom: 30px;
+  margin: 15px auto 20px;
+  height: 20px;
 }
 .progress-bar {
-  height: 10px;
+  height: 2px;
   background-color: pink;
   display: inline-block;
   width: 75%;
+  margin: 2px 0px;
+  position: relative;
 }
 .current-time,
 .duration {
   display: inline-block;
   width: 10%;
   font-size: 10px;
+  color: white;
 }
 .current-time {
   text-align: left;
@@ -293,12 +297,12 @@ export default {
   margin-left: 5px;
 }
 .progress-dot {
-  position: relative;
-  bottom: 3px;
-  height: 16px;
-  width: 16px;
-  border-radius: 8px;
-  background-color: brown;
+  position: absolute;
+  bottom: -3px;
+  height: 8px;
+  width: 8px;
+  border-radius: 5px;
+  background-color: rgb(184, 27, 27);
 }
 
 .play-zone {
@@ -308,8 +312,8 @@ export default {
 }
 .play-mode,
 .play-list {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin: 10px 0px;
 }
 .play-moment {
@@ -320,12 +324,12 @@ export default {
 
 .play-moment .last-song,
 .play-moment .next-song {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin: 10px 0px;
 }
 .play-moment .play-song {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 </style>
