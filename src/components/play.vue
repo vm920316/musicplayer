@@ -80,7 +80,7 @@
           <img
             class="play-song"
             @click="playOrPause"
-            src="~@/assets/playbtn-icon.png"
+            :src="require('@/assets/' + playIcon)"
           >
           <img
             class="next-song"
@@ -125,6 +125,9 @@ export default {
       }
       var result = this.currentTime * 100 / this.duration
       return result * 0.95
+    },
+    playIcon() {
+      return this.beginPlay ? 'playbtn-icon.png' : 'pausebtn-icon.png'
     }
   },
   methods: {
