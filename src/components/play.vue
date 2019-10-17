@@ -23,7 +23,11 @@
     </div>
 
     <div class="main">
-      <div class="play-bar"></div>
+      <!-- <div class="play-bar"></div> -->
+      <img
+        class="play-bar"
+        src="~@/assets/bar-icon.png"
+      >
       <div class="disk">
         <div class="disk-black">
           <!-- <div class="disk-pho"></div> -->
@@ -213,17 +217,21 @@ export default {
   color: rgb(230, 230, 230);
 }
 .play-bar {
-  width: 110px;
-  height: 110px;
-  background-color: blue;
+  width: 170px;
+  height: 170px;
+  /* background-color: blue; */
   margin: 0px auto;
+  position: fixed;
+  top: 70px;
+  left: 45%;
+  z-index: 1;
 }
 .disk {
   width: 300px;
   height: 300px;
   background-color: rgb(255, 255, 255, 0.3);
   border-radius: 150px;
-  margin: 0px auto;
+  margin: 110px auto 0px;
   position: relative;
 }
 .disk-black {
