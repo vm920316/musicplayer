@@ -44,25 +44,97 @@
     </div>
 
     <div class="footer">
-      <div class="progress"></div>
+      <div class="progress">
+        <span class="current-time">{{ currentTime | formatTime }}</span>
+        <div
+          class="progress-bar"
+          @click="changeCurrent"
+        >
+          <div
+            class="progress-dot"
+            :style="{ left: progressPercent + '%' }"
+          ></div>
+        </div>
+        <span class="duration">{{ duration | formatTime }}</span>
+      </div>
       <div class="play-zone">
         <div class="play-mode"></div>
         <div class="play-moment">
           <div class="last-song"></div>
-          <div class="play-song"></div>
+          <div
+            class="play-song"
+            @click="playOrPause"
+          ></div>
           <div class="next-song"></div>
         </div>
         <div class="play-list"></div>
       </div>
     </div>
+    <audio-player
+      :begin-play="beginPlay"
+      :current-time="changedCurrentTime"
+      @fetchCurrentTime="fetchCurrentTime"
+      @fetchDuration="fetchDuration"
+    ></audio-player>
   </div>
 </template>
 
 <script>
+import AudioPlayer from '@/components/audio'
 export default {
+  name: 'play-dialog',
+  components: {
+    AudioPlayer: AudioPlayer
+  },
+  data() {
+    return {
+      beginPlay: false,
+      currentTime: 0,
+      changedCurrentTime: 0,
+      duration: 0
+    }
+  },
+  computed: {
+    progressPercent() {
+      if (!this.duration) {
+        return 0
+      }
+      var result = this.currentTime * 100 / this.duration
+      return result * 0.95
+    }
+  },
   methods: {
     goBack() {
       this.$router.back()
+    },
+    playOrPause() {
+      this.beginPlay = !this.beginPlay
+    },
+    fetchCurrentTime(c) {
+      this.currentTime = c
+    },
+    fetchDuration(d) {
+      this.duration = d
+    },
+    changeCurrent(e) {
+      var rect = e.target.getBoundingClientRect()
+      this.changedCurrentTime = this.duration * (e.clientX - rect.left) / rect.width
+    }
+  },
+  filters: {
+    formatTime(val) {
+      var minutes = wrapWithPrefix(Math.floor(val / 60))
+      var seconds = wrapWithPrefix(Math.floor(val % 60))
+
+      return `${minutes}:${seconds}`
+
+      function wrapWithPrefix(v) {
+        if (v < 10) {
+          return `0${v}`
+        }
+
+        return v.toString()
+      }
     }
   }
 }
@@ -137,10 +209,37 @@ export default {
   height: 120px;
 }
 .progress {
-  height: 20px;
-  background-color: pink;
   margin-bottom: 30px;
 }
+.progress-bar {
+  height: 10px;
+  background-color: pink;
+  display: inline-block;
+  width: 75%;
+}
+.current-time,
+.duration {
+  display: inline-block;
+  width: 10%;
+  font-size: 10px;
+}
+.current-time {
+  text-align: left;
+  margin-right: 5px;
+}
+.duration {
+  text-align: right;
+  margin-left: 5px;
+}
+.progress-dot {
+  position: relative;
+  bottom: 3px;
+  height: 16px;
+  width: 16px;
+  border-radius: 8px;
+  background-color: brown;
+}
+
 .play-zone {
   height: 70px;
   display: flex;
