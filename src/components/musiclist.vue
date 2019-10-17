@@ -65,7 +65,11 @@
     <div class="list">
       <div>
         <div class="list-head">
-          <div class="list-icon"></div>
+          <!-- <div class="list-icon"></div> -->
+          <img
+            class="list-icon"
+            src="~@/assets/playbtnblack-icon.png"
+          >
           <div class="list-title">
             播放全部
           </div>
@@ -73,7 +77,38 @@
             +收藏
           </div>
         </div>
-        <div class="list-item"></div>
+        <div class="hot-item">
+          <div class="hot-item-num">
+            1
+          </div>
+          <div class="hot-item-content">
+            <div class="content-title">
+              <strong>桃子</strong>
+            </div>
+            <div class="content-text">
+              这是IU写给雪梨的歌啊
+            </div>
+          </div>
+          <div class="hot-item-like">
+            ...
+          </div>
+        </div>
+        <div class="hot-item">
+          <div class="hot-item-num">
+            2
+          </div>
+          <div class="hot-item-content">
+            <div class="content-title">
+              <strong>弦子</strong>
+            </div>
+            <div class="content-text">
+              这事一首写给诺上的诗词
+            </div>
+          </div>
+          <div class="hot-item-like">
+            ...
+          </div>
+        </div>
       </div>
     </div>
     <div class="footer"></div>
@@ -206,14 +241,13 @@ export default {
 .list-head {
   display: flex;
   justify-content: space-between;
-  height: 60px;
+  height: 50px;
   padding-top: 5px;
 }
 .list-head .list-icon {
   width: 30px;
   height: 30px;
   border-radius: 20px;
-  background-color: pink;
   margin-top: 5px;
 }
 .list-head .list-title {
@@ -235,8 +269,36 @@ export default {
   font-size: 17px;
   letter-spacing: 2px;
 }
-.list-item {
-  height: 50px;
-  background-color: turquoise;
+.hot-item {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+.hot-item-num {
+  width: 10%;
+  line-height: 60px;
+  font-size: 20px;
+  color: rgb(255, 0, 0);
+  text-align: left;
+}
+.hot-item-content {
+  width: 65%;
+}
+
+.content-title {
+  text-align: left;
+  height: 30px;
+  font-size: 18px;
+}
+.content-text {
+  text-align: left;
+  height: 30px;
+  color: rgb(134, 134, 134);
+}
+.hot-item-like {
+  width: 25%;
+  line-height: 60px;
+  text-align: right;
+  letter-spacing: 3px;
 }
 </style>
