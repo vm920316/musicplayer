@@ -9,10 +9,10 @@
       >
       <div class="song-name">
         <div class="song-content">
-          我还想她
+          {{ songInfo.name }}
         </div>
         <div class="player">
-          林俊杰>
+          {{ songInfo.author }}>
         </div>
       </div>
       <!-- <div class="share"></div> -->
@@ -26,7 +26,7 @@
       <!-- <div class="play-bar"></div> -->
       <img
         class="play-bar"
-        :class="{'play-bar-rotate': beginPlay}"
+        :class="{'play-bar-rotate': playing}"
         src="~@/assets/bar-icon.png"
       >
       <div
@@ -36,7 +36,7 @@
         <div class="disk-black">
           <!-- <div class="disk-pho"></div> -->
           <img
-            src="http://pic28.nipic.com/20130401/10857451_144522260134_2.jpg"
+            :src="songInfo.image"
             class="disk-pho"
           >
         </div>
@@ -91,6 +91,7 @@
           <div class="next-song"></div> -->
           <img
             class="last-song"
+            @click="playSong(-1)"
             src="~@/assets/last-icon.png"
           >
           <img
@@ -99,6 +100,7 @@
             :src="require('@/assets/' + playIcon)"
           >
           <img
+            @click="playSong(1)"
             class="next-song"
             src="~@/assets/next-icon.png"
           >
@@ -111,7 +113,8 @@
       </div>
     </div>
     <audio-player
-      :begin-play="beginPlay"
+      :url="songInfo.url"
+      :begin-play="playing"
       :current-time="changedCurrentTime"
       @fetchCurrentTime="fetchCurrentTime"
       @fetchDuration="fetchDuration"
@@ -128,7 +131,6 @@ export default {
   },
   data() {
     return {
-      beginPlay: false,
       currentTime: 0,
       changedCurrentTime: 0,
       duration: 0
@@ -143,10 +145,19 @@ export default {
       return result * 0.95
     },
     playIcon() {
-      return this.beginPlay ? 'playbtn-icon.png' : 'pausebtn-icon.png'
+      return this.playing ? 'playbtn-icon.png' : 'pausebtn-icon.png'
     },
-    animationPlayState() {
-      return this.beginPlay ? 'running' : 'paused'
+    playing() {
+      return this.$store.state.Play.playing
+    },
+    songInfo() {
+      return this.$store.state.Play.songInfo
+    },
+    songIndex() {
+      return this.$store.getters['Play/songIndex']
+    },
+    songList() {
+      return this.$store.state.Play.songList
     }
   },
   methods: {
@@ -154,7 +165,8 @@ export default {
       this.$store.commit('Play/closeDialog')
     },
     playOrPause() {
-      this.beginPlay = !this.beginPlay
+      const action = this.playing ? 'toPause' : 'toPlay'
+      this.$store.commit(`Play/${action}`)
     },
     fetchCurrentTime(c) {
       this.currentTime = c
@@ -165,6 +177,10 @@ export default {
     changeCurrent(e) {
       var rect = e.target.getBoundingClientRect()
       this.changedCurrentTime = this.duration * (e.clientX - rect.left) / rect.width
+    },
+    playSong(num) {
+      const index = this.songIndex + num
+      this.$store.commit('Play/changeSongByIndex', index)
     }
   },
   filters: {

@@ -4,10 +4,10 @@
     @timeupdate="updateTime"
     @progress="fetchDuration"
     @playing="fetchDuration"
-    v-control="{beginPlay, muted, currentTime}"
+    v-control="{beginPlay, muted, currentTime, url}"
   >
     <source
-      src="http://47.104.221.137/static/your_eyes.mp3"
+      :src="url"
       type="audio/mpeg"
     >
   </audio>
@@ -42,32 +42,35 @@ export default {
     control(el, binding) {
       var old = binding.oldValue
       var val = binding.value
-      play(el, val, old)
-      mute(el, val, old)
-      changeCurrentTime(el, val, old)
 
-      function changeCurrentTime(el, val, old) {
-        if (old && val.currentTime === old.currentTime) {
-          return
-        }
-        el.currentTime = val.currentTime
-      }
-      function mute(el, val, old) {
-        if (old && val.muted === old.muted) {
-          return
-        }
-
-        el.muted = val.muted
-      }
-      function play(el, val, old) {
-        if (old && old.beginPlay === val.beginPlay) {
-          return
-        }
-        if (val.beginPlay) {
+      controlInvoker(el, val, old, 'beginPlay', (el, newVal) => {
+        if (newVal) {
           el.play()
         } else {
           el.pause()
         }
+      })
+
+      controlInvoker(el, val, old, ['muted', 'currentTime', 'url'], (el, newVal, oldVal, key) => {
+        el[key] = newVal
+        if (key === 'url') {
+          el.load()
+          setTimeout(() => {
+            el.play()
+          })
+        }
+      })
+
+      function controlInvoker(el, val, old, keys, cb) {
+        if (!Array.isArray(keys)) {
+          keys = [keys]
+        }
+        keys.forEach(key => {
+          if (old && val && val[key] === old[key]) {
+            return
+          }
+          cb(el, val && val[key], old && old[key], key)
+        })
       }
     }
   }
