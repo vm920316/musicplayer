@@ -26,6 +26,7 @@
       <!-- <div class="play-bar"></div> -->
       <img
         class="play-bar"
+        :class="{'play-bar-rotate': beginPlay}"
         src="~@/assets/bar-icon.png"
       >
       <div class="disk">
@@ -225,7 +226,16 @@ export default {
   top: 70px;
   left: 45%;
   z-index: 1;
+  transform-origin: 13.5px 13.5px;
+  transition: transform 1s;
 }
+
+.play-bar-rotate {
+  transform: rotate(30deg);
+  transform-origin: 13.5px 13.5px;
+  transition: transform 1s;
+}
+
 .disk {
   width: 260px;
   height: 260px;
