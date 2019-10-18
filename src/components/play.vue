@@ -29,7 +29,10 @@
         :class="{'play-bar-rotate': beginPlay}"
         src="~@/assets/bar-icon.png"
       >
-      <div class="disk">
+      <div
+        class="disk"
+        :style="{'animation-play-state': animationPlayState}"
+      >
         <div class="disk-black">
           <!-- <div class="disk-pho"></div> -->
           <img
@@ -141,6 +144,9 @@ export default {
     },
     playIcon() {
       return this.beginPlay ? 'playbtn-icon.png' : 'pausebtn-icon.png'
+    },
+    animationPlayState() {
+      return this.beginPlay ? 'running' : 'paused'
     }
   },
   methods: {
@@ -243,7 +249,17 @@ export default {
   border-radius: 150px;
   margin: 80px auto 0px;
   position: relative;
+  animation: spin 4s infinite linear;
 }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .disk-black {
   width: 240px;
   height: 240px;
@@ -252,7 +268,7 @@ export default {
   background-repeat: no-repeat;
   position: absolute;
   margin: 10px;
-  box-shadow: 2px 2px 5px #888888;
+  /* box-shadow: 2px 2px 5px #888888; */
 }
 .disk-pho {
   width: 140px;
