@@ -1,4 +1,4 @@
-const devServerConfig = require('./dev-server.config')
+// const devServerConfig = require('./dev-server.config')
 module.exports = Object.assign({
   pluginOptions: {
     i18n: {
@@ -8,4 +8,4 @@ module.exports = Object.assign({
       enableInSFC: true
     }
   }
-}, devServerConfig)
+})

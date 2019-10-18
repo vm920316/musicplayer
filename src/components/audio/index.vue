@@ -7,7 +7,7 @@
     v-control="{beginPlay, muted, currentTime}"
   >
     <source
-      src="../../../music-sources/your_eyes.mp3"
+      src="http://47.104.221.137/static/your_eyes.mp3"
       type="audio/mpeg"
     >
   </audio>

@@ -13,7 +13,7 @@ export default {
   },
   navItems() {
     return new Promise((resolve) => {
-      Vue.http.get('/api/navItems').then(response => {
+      Vue.http.get('/api/find/nav-items').then(response => {
         if (response.status === 200) {
           resolve(response.data || [])
         }

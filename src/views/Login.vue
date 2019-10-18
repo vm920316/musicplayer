@@ -79,13 +79,13 @@ export default {
         return
       }
       // to submit username or password
-      this.$http.post('/api/login', {
+      this.$http.post('/api/user/login', {
         username: this.model.username,
         password: this.model.password
       }).then(response => {
         if (response.status === 200) {
           this.$ls.set(TOKEN_KEY, response.data.token)
-          const redirect = decodeURIComponent(this.$route.query.redirect) || '/'
+          const redirect = (this.$route.query.redirect && decodeURIComponent(this.$route.query.redirect)) || '/'
           this.$router.push(redirect)
         } else {
           this.errorMassage = this.$t('incorrect-username-or-password')

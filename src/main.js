@@ -15,7 +15,8 @@ Vue.use(Storage, {
 })
 
 Vue.use(Http, {
-  namespace: NAMESPACE
+  namespace: NAMESPACE,
+  baseURL: 'http://47.104.221.137:3000'
 })
 
 new Vue({
