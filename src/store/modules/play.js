@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     open: false,
-    songInfo: {},
+    songInfo: null,
     songList: [],
     playing: false
   },
@@ -28,17 +28,8 @@ export default {
       if (!state.songList || !state.songList.length) {
         return
       }
-      const songLength = state.songList.length
-      let song
-      if (i < 0) {
-        song = state.songList[0]
-      } else if (i > songLength - 1) {
-        song = state.songList[songLength - 1]
-      } else {
-        song = state.songList[i]
-      }
-
-      state.songInfo = song
+      const selectedSongs = state.songList.slice(i, i + 1)
+      state.songInfo = selectedSongs.length ? selectedSongs[0] : state.songList[0]
     },
     changeSong(state, song) {
       state.songInfo = song

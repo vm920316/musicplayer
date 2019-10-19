@@ -86,9 +86,6 @@
           src="~@/assets/playmode-icon.png"
         >
         <div class="play-moment">
-          <!-- <div class="last-song"></div>
-          <div class="play-song"></div>
-          <div class="next-song"></div> -->
           <img
             class="last-song"
             @click="playSong(-1)"
@@ -118,12 +115,14 @@
       :current-time="changedCurrentTime"
       @fetchCurrentTime="fetchCurrentTime"
       @fetchDuration="fetchDuration"
+      @ended="ended"
     ></audio-player>
   </div>
 </template>
 
 <script>
 import AudioPlayer from '@/components/audio'
+import { SONG_LIST } from '@/utils/contants'
 export default {
   name: 'play-dialog',
   components: {
@@ -142,7 +141,7 @@ export default {
         return 0
       }
       var result = this.currentTime * 100 / this.duration
-      return result * 0.95
+      return result * 0.97
     },
     playIcon() {
       return this.playing ? 'playbtn-icon.png' : 'pausebtn-icon.png'
@@ -154,7 +153,7 @@ export default {
       return this.$store.state.Play.playing
     },
     songInfo() {
-      return this.$store.state.Play.songInfo
+      return this.$store.state.Play.songInfo || {}
     },
     songIndex() {
       return this.$store.getters['Play/songIndex']
@@ -182,8 +181,11 @@ export default {
       this.changedCurrentTime = this.duration * (e.clientX - rect.left) / rect.width
     },
     playSong(num) {
-      const index = this.songIndex + num
+      const index = this.songIndex === -1 ? 0 : this.songIndex + num
       this.$store.commit('Play/changeSongByIndex', index)
+    },
+    ended() {
+      this.playSong(1)
     }
   },
   filters: {
@@ -199,6 +201,34 @@ export default {
         }
 
         return v.toString()
+      }
+    }
+  },
+  watch: {
+    songList: {
+      deep: true,
+      handler(val) {
+        if (!val || !val.length) {
+          return
+        }
+
+        this.$ls.set(SONG_LIST, val)
+      }
+    },
+    '$store.state.Play.open'(val) {
+      if (!val) {
+        return
+      }
+      const oldList = this.songList || []
+      let songList = []
+      if (!oldList.length) {
+        songList = this.$ls.get(SONG_LIST) || []
+        if (songList.length) {
+          this.$store.commit('Play/setSongList', songList)
+        }
+      }
+      if (!this.$store.state.Play.songInfo && songList.length) {
+        this.$store.commit('Play/changeSong', songList[0])
       }
     }
   }
@@ -235,12 +265,18 @@ export default {
   font-size: 16px;
   line-height: 22px;
   color: rgb(240, 240, 240);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .player {
   height: 18px;
   font-size: 11px;
   line-height: 18px;
   color: rgb(230, 230, 230);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .play-bar {
   width: 140px;

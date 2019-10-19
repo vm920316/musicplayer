@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { SONG_LIST } from '@/utils/contants'
 export default {
   name: 'song-list',
   props: {
@@ -74,6 +75,14 @@ export default {
         this.$store.commit('Play/toPlay')
         this.$store.commit('Play/openDialog')
       })
+    }
+  },
+  watch: {
+    songs: {
+      deep: true,
+      handler(val) {
+        this.$ls.set(SONG_LIST, val || [])
+      }
     }
   }
 }

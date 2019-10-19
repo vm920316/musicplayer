@@ -4,6 +4,9 @@
     @timeupdate="updateTime"
     @progress="fetchDuration"
     @playing="fetchDuration"
+    @load="fetchDuration"
+    @canplay="fetchDuration"
+    @ended="ended"
     v-control="{beginPlay, muted, currentTime, url}"
   >
     <source
@@ -36,6 +39,9 @@ export default {
     },
     fetchDuration(e) {
       this.$emit('fetchDuration', e.target.duration || 0)
+    },
+    ended() {
+      this.$emit('ended', true)
     }
   },
   directives: {
@@ -55,9 +61,11 @@ export default {
         el[key] = newVal
         if (key === 'url') {
           el.load()
-          setTimeout(() => {
-            el.play()
-          })
+          if (val.beginPlay) {
+            setTimeout(() => {
+              el.play()
+            })
+          }
         }
       })
 
