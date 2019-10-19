@@ -130,9 +130,35 @@ export default {
 .navbar {
   width: 100%;
   height: 150px;
-  background-color: pink;
   border-radius: 10px;
   top: 45px;
+  display: flex;
+  overflow-x: scroll;
+  animation: loop 12s infinite linear;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation-direction: alternate;
+}
+@keyframes loop {
+  0% {
+    background-image: url(http://img1.3lian.com/2015/a2/236/d/156.jpg);
+  }
+
+  4% {
+    background-image: url(http://img1.3lian.com/2015/a2/236/d/156.jpg);
+  }
+
+  36% {
+    background-image: url(http://img1.3lian.com/2015/w22/38/d/85.jpg);
+  }
+
+  68% {
+    background-image: url(http://uploads.5068.com/allimg/151210/1-151210115612-51.jpg);
+  }
+
+  100% {
+    background-image: url(http://img17.3lian.com/d/file/201701/20/3c7deb10171f9c3d783ecf8a4191d1f0.jpg);
+  }
 }
 
 /* .main-title-name{display:flex;width: 50%;} */
