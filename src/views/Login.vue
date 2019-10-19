@@ -50,6 +50,7 @@
         <input
           type="button"
           @click="submit"
+          :disabled="disabled"
           :value="$t('login-button-content')"
         />
       </div>
@@ -69,7 +70,8 @@ export default {
       },
       errorMassage: '',
       showError: false,
-      agreement: false
+      agreement: false,
+      disabled: false
     }
   },
   created() {
@@ -84,6 +86,7 @@ export default {
       if (isValid === false) {
         return
       }
+      this.disabled = true
       // to submit username or password
       this.$http.post('/api/user/login', {
         username: this.model.username,
@@ -96,6 +99,8 @@ export default {
         } else {
           this.errorMassage = this.$t('incorrect-username-or-password')
         }
+      }).finally(() => {
+        this.disabled = false
       })
     },
 
