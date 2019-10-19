@@ -50,7 +50,7 @@ export default {
         return false
       }
 
-      return currentSong.name === this.song.name && currentSong.author === this.song.author
+      return currentSong === this.song || (currentSong.name === this.song.name && currentSong.author === this.song.author)
     }
   }
 }

@@ -129,7 +129,7 @@
 
 <script>
 import AudioPlayer from '@/components/audio'
-import { SONG_LIST } from '@/utils/contants'
+import { SONG_PLAYING, CURRENT_SONG, SONG_LIST } from '@/utils/contants'
 import MusicModal from '@/components/music-list-modal'
 import SongList from '@/components/music-list/song-list'
 export default {
@@ -146,6 +146,15 @@ export default {
       duration: 0,
       openModal: false
     }
+  },
+  mounted() {
+    let song = this.$store.state.Play.song || this.$ls.get(CURRENT_SONG)
+    const songList = this.songList.length ? this.songList : this.$ls.get(SONG_LIST) || []
+    if (!song && songList.length) {
+      song = songList[0]
+    }
+    this.$store.commit('Play/setSongList', songList)
+    this.$store.commit('Play/changeSong', song)
   },
   computed: {
     progressPercent() {
@@ -171,7 +180,7 @@ export default {
       return this.$store.getters['Play/songIndex']
     },
     songList() {
-      return this.$store.state.Play.songList
+      return this.$store.state.Play.songList || []
     }
   },
   methods: {
@@ -220,6 +229,11 @@ export default {
     }
   },
   watch: {
+    playing: {
+      handler(val) {
+        this.$ls.set(SONG_PLAYING, val)
+      }
+    },
     songList: {
       deep: true,
       handler(val) {
@@ -230,21 +244,13 @@ export default {
         this.$ls.set(SONG_LIST, val)
       }
     },
-    '$store.state.Play.open'(val) {
-      if (!val) {
+    songInfo(val, old) {
+      this.$ls.set(CURRENT_SONG, val)
+      if (!old) {
         return
       }
-      const oldList = this.songList || []
-      let songList = []
-      if (!oldList.length) {
-        songList = this.$ls.get(SONG_LIST) || []
-        if (songList.length) {
-          this.$store.commit('Play/setSongList', songList)
-        }
-      }
-      if (!this.$store.state.Play.songInfo && songList.length) {
-        this.$store.commit('Play/changeSong', songList[0])
-      }
+      this.currentTime = 0
+      this.changedCurrentTime = 0
     }
   }
 }

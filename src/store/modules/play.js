@@ -13,8 +13,16 @@ export default {
       if (!song || !songList) {
         return -1
       }
+      return songList.findIndex(item => {
+        if (item === song) {
+          return true
+        }
+        if (item.name === song.name && item.author === song.author) {
+          return true
+        }
 
-      return songList.indexOf(song)
+        return false
+      })
     }
   },
   mutations: {
@@ -42,6 +50,9 @@ export default {
     },
     toPause(state) {
       state.playing = false
+    },
+    changePlayStatus(state, val) {
+      state.playing = !!val
     }
   }
 }

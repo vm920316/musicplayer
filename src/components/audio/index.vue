@@ -1,6 +1,7 @@
 <template>
   <audio
     id="player"
+    preload="auto"
     @timeupdate="updateTime"
     @progress="fetchDuration"
     @playing="fetchDuration"
@@ -51,7 +52,12 @@ export default {
 
       controlInvoker(el, val, old, 'beginPlay', (el, newVal) => {
         if (newVal) {
-          el.play()
+          if (el.currentTime === 0) {
+            el.load()
+          }
+          setTimeout(() => {
+            el.play()
+          })
         } else {
           el.pause()
         }

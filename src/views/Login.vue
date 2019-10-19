@@ -109,7 +109,7 @@ export default {
         this.errorMassage = this.$t('require-username')
         return false
       }
-      if (!this.model.username.match(/^\d{4,6}@\w{2,3}\.\w{2,4}$/)) {
+      if (!this.model.username.match(/^\w{4,16}@\w{2,8}\.\w{2,8}$/)) {
         this.errorMassage = this.$t('incorrect-email')
         return false
       }
