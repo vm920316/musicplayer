@@ -10,12 +10,12 @@
       </slot>
     </div>
     <div class="modal-footer">
-      <input
-        type="button"
+      <div
         class="close"
-        :value="$t('close')"
         @click="close"
       >
+        {{ $t('close') }}
+      </div>
     </div>
   </div>
 </template>
@@ -59,7 +59,7 @@ export default {
   height: 100%;
 }
 .modal-baffle {
-  height: 20%;
+  height: 30%;
 }
 .modal-content {
   background-color: white;
@@ -72,17 +72,19 @@ export default {
 }
 .modal-footer {
   position: fixed;
-  bottom: 50px;
+  bottom: 30px;
   width: 100%;
   text-align: center;
-  height: 100px;
+  height: 30px;
   background-color: white;
 }
 .modal-footer .close {
   font-size: 30px;
+  line-height: 60px;
   font-weight: 100;
   border: none;
   width: 100%;
-  background-color: white;
+  height: 60px;
+  background-color: rgb(243, 241, 241);
 }
 </style>

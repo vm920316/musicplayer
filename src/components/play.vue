@@ -159,7 +159,7 @@ export default {
       return this.playing ? 'playbtn-icon.png' : 'pausebtn-icon.png'
     },
     animationPlayState() {
-      return this.beginPlay ? 'running' : 'paused'
+      return this.playing ? 'running' : 'paused'
     },
     playing() {
       return this.$store.state.Play.playing

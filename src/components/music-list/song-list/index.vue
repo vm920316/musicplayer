@@ -18,32 +18,12 @@
           +收藏
         </div>
       </div>
-      <div
-        class="hot-item"
+      <song-item
         v-for="(song, i) in songs"
         :key="i"
-      >
-        <div
-          class="hot-item-num"
-          @click="play(i)"
-        >
-          {{ i + 1 }}
-        </div>
-        <div
-          class="hot-item-content"
-          @click="play(i)"
-        >
-          <div class="content-title">
-            {{ song.name }}
-          </div>
-          <div class="content-text">
-            {{ `${song.author} - ${song.name} ` }}
-          </div>
-        </div>
-        <div class="hot-item-like">
-          ...
-        </div>
-      </div>
+        :song="{...song, index: i}"
+        @play="play(i)"
+      ></song-item>
       <div class="list-footer"></div>
     </div>
   </div>
@@ -51,8 +31,12 @@
 
 <script>
 import { SONG_LIST } from '@/utils/contants'
+import SongItem from './song-item'
 export default {
   name: 'song-list',
+  components: {
+    SongItem
+  },
   props: {
     songs: {
       type: Array,
@@ -75,6 +59,15 @@ export default {
         this.$store.commit('Play/toPlay')
         this.$store.commit('Play/openDialog')
       })
+    },
+    isCurrent(i) {
+      const currentSong = this.$store.state.Play.songInfo
+      const songs = this.songs || []
+      if (!currentSong || !songs.length || !songs[i]) {
+        return false
+      }
+
+      return currentSong.name === this.songs && this.songs[i].name
     }
   },
   watch: {
@@ -130,47 +123,6 @@ export default {
   color: white;
   font-size: 17px;
   letter-spacing: 2px;
-}
-.list-container:last-child() {
-  margin-bottom: 20px;
-}
-.hot-item {
-  display: flex;
-  justify-content: space-between;
-  height: 60px;
-}
-.hot-item-num {
-  width: 10%;
-  line-height: 60px;
-  font-size: 20px;
-  color: rgb(255, 0, 0);
-  text-align: left;
-}
-.hot-item-content {
-  width: 65%;
-}
-
-.content-title {
-  text-align: left;
-  height: 30px;
-  font-size: 18px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  /* font-weight: bold; */
-}
-.content-text {
-  text-align: left;
-  height: 30px;
-  color: rgb(134, 134, 134);
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.hot-item-like {
-  width: 25%;
-  line-height: 60px;
-  text-align: right;
-  letter-spacing: 3px;
 }
 .list-footer {
   height: 80px;
