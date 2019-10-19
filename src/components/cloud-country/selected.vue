@@ -2,7 +2,12 @@
   <div class="select">
     <span class="select-introduction">原创精选：{{ title }}</span>
     <div class="select-content">
-      <div class="select-content-pho"></div>
+      <div class="select-content-pho">
+        <img
+          :src="image"
+          alt="loading"
+        >
+      </div>
       <div class="select-between">
         <span class="select-content-name">{{ content }}</span>
         <div class="select-person-photo"></div>
@@ -35,6 +40,9 @@ export default {
     },
     reviews: {
       type: Number
+    },
+    image: {
+      type: String
     }
   }
 }
@@ -64,6 +72,11 @@ export default {
 .select-content-pho {
   height: 160px;
   background-color: pink;
+  border-radius: 10px 10px 0 0;
+}
+.select-content-pho img {
+  height: 100%;
+  width: 100%;
   border-radius: 10px 10px 0 0;
 }
 .select-between {

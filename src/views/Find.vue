@@ -4,9 +4,15 @@
       <find-header @open-find-search="openFindSearch"></find-header>
 
       <div class="find-content">
-        <div class="navbar"></div>
+        <div
+          class="navbar"
+          @click="openMusicListPage"
+        ></div>
 
-        <nav-items :nav-items="navItems"></nav-items>
+        <nav-items
+          :nav-items="navItems"
+          @nav-item-touched="openMusicListPage"
+        ></nav-items>
 
         <horizontal-line
           width="100%"
@@ -15,7 +21,10 @@
           margin-top="0px"
         ></horizontal-line>
 
-        <song-list :content-list="newSongs">
+        <song-list
+          :content-list="newSongs"
+          @song-content-touched="openMusicListPage"
+        >
           <div class="main-title-name">
             <span class="letter-space">新碟</span>
             <span class="letter-split">|</span>
@@ -29,7 +38,10 @@
         </song-list>
         <horizontal-line></horizontal-line>
 
-        <song-list :content-list="recommendSongs">
+        <song-list
+          :content-list="recommendSongs"
+          @song-content-touched="openMusicListPage"
+        >
           <!-- <div class="main-title-name"> -->
           <span class="letter-space">推荐歌单</span>
           <!-- </div> -->
@@ -50,6 +62,8 @@
             :content="selected.content"
             :likes="selected.likes"
             :reviews="selected.reviews"
+            :image="selected.image"
+            @click.native="openMusicListPage"
           ></cloud-country-selected>
           <horizontal-line :key="-i-1"></horizontal-line>
         </template>
@@ -112,6 +126,11 @@ export default {
     },
     closeFindSearch() {
       this.showFindSearch = false
+    },
+    openMusicListPage() {
+      this.$router.push({
+        name: 'musicList'
+      })
     }
   }
 }
@@ -141,23 +160,23 @@ export default {
 }
 @keyframes loop {
   0% {
-    background-image: url(http://img1.3lian.com/2015/a2/236/d/156.jpg);
+    background-image: url("http://47.104.221.137/static/images/WechatIMG1042.jpeg");
   }
 
   4% {
-    background-image: url(http://img1.3lian.com/2015/a2/236/d/156.jpg);
+    background-image: url("http://47.104.221.137/static/images/WechatIMG1045.jpeg");
   }
 
   36% {
-    background-image: url(http://img1.3lian.com/2015/w22/38/d/85.jpg);
+    background-image: url("http://47.104.221.137/static/images/WechatIMG1048.jpeg");
   }
 
   68% {
-    background-image: url(http://uploads.5068.com/allimg/151210/1-151210115612-51.jpg);
+    background-image: url("http://47.104.221.137/static/images/WechatIMG1051.jpeg");
   }
 
   100% {
-    background-image: url(http://img17.3lian.com/d/file/201701/20/3c7deb10171f9c3d783ecf8a4191d1f0.jpg);
+    background-image: url("http://47.104.221.137/static/images/WechatIMG1046.jpeg");
   }
 }
 

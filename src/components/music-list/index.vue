@@ -1,5 +1,8 @@
 <template>
-  <div id="musiclist">
+  <div
+    id="musiclist"
+    v-scrollTop
+  >
     <music-list-header :page-title="songSheet.pageTitle"></music-list-header>
     <music-list-main
       :title="songSheet.title"
@@ -40,6 +43,13 @@ export default {
     this.$http.get('/api/musicList').then(response => {
       this.songSheet = response.data
     })
+  },
+  directives: {
+    scrollTop: {
+      inserted(el) {
+        window.scrollTo(0, 0)
+      }
+    }
   }
 }
 </script>

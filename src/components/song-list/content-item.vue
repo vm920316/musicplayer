@@ -1,6 +1,11 @@
 <template>
   <div :class="{ 'main-content-item-margin': needMargin }">
-    <div class="main-content-item-pho"></div>
+    <div class="main-content-item-pho">
+      <img
+        :src="song.image"
+        alt="loading"
+      >
+    </div>
     <span class="main-content-item-music">{{ song.name }}</span>
     <span class="main-content-item-name">演唱者：{{ song.author }}</span>
   </div>
@@ -15,7 +20,8 @@ export default {
       default() {
         return {
           name: '',
-          author: ''
+          author: '',
+          image: ''
         }
       }
     },
@@ -39,6 +45,11 @@ export default {
   width: 106px;
   height: 106px;
   background-color: pink;
+  border-radius: 10px;
+}
+.main-content-item-pho img {
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
 }
 .main-content-item-music {

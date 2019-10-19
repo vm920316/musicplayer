@@ -34,7 +34,7 @@
           @click="play(i)"
         >
           <div class="content-title">
-            <strong>{{ song.name }}</strong>
+            {{ song.name }}
           </div>
           <div class="content-text">
             {{ `${song.author} - ${song.name} ` }}
@@ -156,6 +156,7 @@ export default {
   font-size: 18px;
   text-overflow: ellipsis;
   overflow: hidden;
+  /* font-weight: bold; */
 }
 .content-text {
   text-align: left;

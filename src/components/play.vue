@@ -102,13 +102,20 @@
             src="~@/assets/next-icon.png"
           >
         </div>
-        <!-- <div class="play-list"></div> -->
-        <img
+        <div
           class="play-list"
-          src="~@/assets/list-icon.png"
+          @click="changeModalStatus(true)"
         >
+          <img src="~@/assets/list-icon.png">
+        </div>
       </div>
     </div>
+    <music-modal
+      :open="openModal"
+      @close="changeModalStatus(false)"
+    >
+      <song-list :songs="songList"></song-list>
+    </music-modal>
     <audio-player
       :url="songInfo.url"
       :begin-play="playing"
@@ -123,16 +130,21 @@
 <script>
 import AudioPlayer from '@/components/audio'
 import { SONG_LIST } from '@/utils/contants'
+import MusicModal from '@/components/music-list-modal'
+import SongList from '@/components/music-list/song-list'
 export default {
   name: 'play-dialog',
   components: {
-    AudioPlayer: AudioPlayer
+    AudioPlayer: AudioPlayer,
+    MusicModal,
+    SongList
   },
   data() {
     return {
       currentTime: 0,
       changedCurrentTime: 0,
-      duration: 0
+      duration: 0,
+      openModal: false
     }
   },
   computed: {
@@ -186,6 +198,9 @@ export default {
     },
     ended() {
       this.playSong(1)
+    },
+    changeModalStatus(val) {
+      this.openModal = val
     }
   },
   filters: {
@@ -396,6 +411,10 @@ export default {
   width: 40px;
   height: 40px;
   margin: 10px 0px;
+}
+.play-list > img {
+  width: 100%;
+  height: 100%;
 }
 .play-moment {
   width: 60%;

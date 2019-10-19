@@ -72,6 +72,12 @@ export default {
       agreement: false
     }
   },
+  created() {
+    if (this.$route.query.hasOwnProperty('needAuth') && this.$route.query.needAuth) {
+      this.showError = true
+      this.errorMassage = this.$t('re-login-message')
+    }
+  },
   methods: {
     submit () {
       let isValid = this.isValid()
@@ -85,8 +91,8 @@ export default {
       }).then(response => {
         if (response.status === 200) {
           this.$ls.set(TOKEN_KEY, response.data.token)
-          const redirect = (this.$route.query.redirect && decodeURIComponent(this.$route.query.redirect)) || '/'
-          this.$router.push(redirect)
+          const redirect = this.$route.query.redirect || '/find'
+          window.location.href = redirect
         } else {
           this.errorMassage = this.$t('incorrect-username-or-password')
         }

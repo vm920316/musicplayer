@@ -4,6 +4,7 @@
       class="nav-item"
       v-for="(item, index) in navItems"
       :key="index"
+      @click="navItemTouched(item)"
     >
       <!-- <div class="item-pho"> -->
 
@@ -24,6 +25,11 @@ export default {
   props: {
     navItems: {
       type: Array
+    }
+  },
+  methods: {
+    navItemTouched(navItem) {
+      this.$emit('nav-item-touched', navItem)
     }
   }
 }

@@ -2,6 +2,7 @@
   <div class="head">
     <img
       class="back"
+      @click="goBack"
       src="~@/assets/back-icon.png"
     >
     <div class="title">
@@ -34,6 +35,9 @@ export default {
   methods: {
     openPlayDialog() {
       this.$store.commit('Play/openDialog')
+    },
+    goBack() {
+      this.$router.back()
     }
   }
 }

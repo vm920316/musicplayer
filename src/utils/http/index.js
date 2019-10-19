@@ -50,9 +50,7 @@ function configAxios(options) {
     }
 
     const token = storage.get(TOKEN_KEY)
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
-    }
+    config.headers.Authorization = token ? `Bearer ${token}` : 'Bearer token'
     return config
   }, function (error) {
     return Promise.reject(error)
@@ -72,6 +70,9 @@ function configAxios(options) {
     }
     return response
   }, function (error) {
+    if (error.message && error.message.indexOf('401')) {
+      window.location.href = `/login?redirect=${encodeURIComponent(window.location.href)}&needAuth=true`
+    }
     return Promise.reject(error)
   })
 }

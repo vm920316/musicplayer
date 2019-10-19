@@ -10,6 +10,7 @@
         :key="i"
         :index="i"
         :song="item"
+        @click.native="songContentTouched(item)"
       ></content-item>
     </div>
   </div>
@@ -28,7 +29,8 @@ export default {
       default() {
         return [{
           name: '',
-          author: ''
+          author: '',
+          image: ''
         }]
       }
     }
@@ -42,6 +44,9 @@ export default {
         return false
       }
       return true
+    },
+    songContentTouched(song) {
+      this.$emit('song-content-touched', song)
     }
   }
 }

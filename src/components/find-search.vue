@@ -20,7 +20,9 @@
       >
     </div>
     <div class="main">
-      <div class="advertising"></div>
+      <div class="advertising">
+        <img src="http://47.104.221.137/static/images/WechatIMG1042.jpeg">
+      </div>
 
       <div class="history">
         <div class="history-title">
@@ -158,6 +160,11 @@ export default {
   width: 100%;
   height: 60px;
   background-color: pink;
+  border-radius: 15px;
+}
+.advertising img {
+  width: 100%;
+  height: 100%;
   border-radius: 15px;
 }
 

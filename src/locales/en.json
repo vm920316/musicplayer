@@ -11,5 +11,7 @@
   "require-password": "password is required",
   "incorrect-email": "incorrect email",
   "password-min-length": "Length of password must be at least 6",
-  "incorrect-username-or-password": "username or password is incorrect"
+  "incorrect-username-or-password": "username or password is incorrect",
+  "re-login-message": "authentication failed, you need to login again",
+  "close": "close"
 }
