@@ -70,7 +70,6 @@ function configAxios(options) {
     }
     return response
   }, function (error) {
-    const href = window.location.href
     if (error.message && error.message.indexOf('401') && window.location.pathname !== '/login') {
       window.location.href = `/login?redirect=${encodeURIComponent(window.location.href)}&needAuth=true`
     }
