@@ -40,7 +40,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('/api/musicList').then(response => {
+    this.$http.get('/api/musicList', { cache: true }).then(response => {
       this.songSheet = response.data
     })
   },
