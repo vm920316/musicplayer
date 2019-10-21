@@ -37,7 +37,9 @@ export default {
       this.$store.commit('Play/openDialog')
     },
     goBack() {
-      this.$router.back()
+      this.$router.push({
+        name: 'find'
+      })
     }
   }
 }

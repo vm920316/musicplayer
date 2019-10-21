@@ -7,5 +7,15 @@ module.exports = Object.assign({
       localeDir: 'locales',
       enableInSFC: true
     }
+  },
+  productionSourceMap: false,
+  configureWebpack: {
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        minSize: 10000,
+        maxSize: 200000,
+      }
+    }
   }
 })

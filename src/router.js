@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Login from './views/Login.vue'
 import { TOKEN_KEY } from '@/utils/contants'
 Vue.use(Router)
 
@@ -9,58 +10,27 @@ let router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/login',
+      name: 'login',
+      component: Login,
+      meta: {
+        auth: false
+      }
+    },
+    {
       path: '/',
       name: 'home',
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
       path: '/find',
       name: 'find',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/Find.vue')
-    },
-    {
-      path: '/login',
-      name: 'login',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/Login.vue'),
-      meta: {
-        auth: false
-      }
-    },
-    {
-      path: '/play',
-      name: 'play',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './components/play.vue'),
-      meta: {
-        auth: false
-      }
+      component: () => import('./views/Find.vue')
     },
     {
       path: '/music-list',
       name: 'musicList',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './components/music-list'),
-      meta: {
-        auth: false
-      }
+      component: () => import('@/components/music-list/index.vue')
     }
   ]
 })

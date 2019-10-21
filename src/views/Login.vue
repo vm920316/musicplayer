@@ -94,8 +94,8 @@ export default {
       }).then(response => {
         if (response.status === 200) {
           this.$ls.set(TOKEN_KEY, response.data.token)
-          const redirect = this.$route.query.redirect || '/find'
-          window.location.href = redirect
+          const redirect = decodeURIComponent(this.$route.query.redirect || '/find')
+          this.$router.push(redirect)
         } else {
           this.errorMassage = this.$t('incorrect-username-or-password')
         }
@@ -133,7 +133,7 @@ export default {
       return true
     },
 
-    focus () {
+    focus (e) {
       this.showError = false
     }
   }

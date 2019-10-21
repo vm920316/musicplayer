@@ -2,6 +2,7 @@ import axios from 'axios'
 import hash from '@/utils/hash'
 import getStorage from '@/utils/client-storage/storage'
 import { TOKEN_KEY } from '@/utils/contants'
+import Router from '@/router.js'
 let storage
 
 function getDescriptor(key) {
@@ -71,7 +72,15 @@ function configAxios(options) {
     return response
   }, function (error) {
     if (error.message && error.message.indexOf('401') && window.location.pathname !== '/login') {
-      window.location.href = `/login?redirect=${encodeURIComponent(window.location.href)}&needAuth=true`
+      const location = window.location
+      Router.push({
+        name: 'login',
+        query: {
+          redirect: encodeURIComponent(location.pathname + location.search),
+          needAuth: true
+        }
+      })
+      // window.location.href = `/login?redirect=${encodeURIComponent(window.location.href)}&needAuth=true`
     }
     return Promise.reject(error)
   })
