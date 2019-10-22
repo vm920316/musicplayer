@@ -1,7 +1,6 @@
 <template>
   <div
     class="carousel"
-    @mouseenter="stop"
     @mouseleave="spin"
   >
     <transition-group
@@ -64,7 +63,9 @@ export default {
       }, 2000)
     },
     clickDot(i) {
+      this.stop()
       this.currentIndex = i
+      this.spin()
     }
   },
   mounted() {
