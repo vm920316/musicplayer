@@ -4,7 +4,8 @@
     <br>
     <input
       type="button"
-      :value="$t(&quot;logout-button-content&quot;)"
+      class="log-out"
+      :value="$t('logout-button-content')"
       @click="logout"
     >
     <gl-footer></gl-footer>
@@ -29,3 +30,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home {
+  text-align: center;
+}
+.log-out {
+  background-color: slategray;
+  color: red;
+  width: 90%;
+  margin: 30px auto;
+  height: 35px;
+  font-size: 20px;
+  display: block;
+  border-radius: 15px;
+  border-style: none;
+}
+</style>
